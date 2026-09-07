@@ -13,29 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="animate-pulse text-cyan-300 text-lg">📡</span>
                     <span class="text-cyan-300 font-mono text-sm tracking-widest uppercase font-bold">${cleanText(data.header.lokasi)}</span>
                 </div>
-                <p class="text-base md:text-lg leading-relaxed text-white drop-shadow-md">${cleanText(data.about_me)}</p>
+                <p class="text-base md:text-lg leading-relaxed text-slate-100 font-medium drop-shadow-md">${cleanText(data.about_me)}</p>
             `;
 
-            // 1. Render Projects (With Zoom Hover & High Visibility Overlay)
+            // 1. Render Projects
             renderProjectCards('projects-grid', data.project_experience.projects);
 
-            // 2. Render Skills (With Zoom Hover & High Visibility Overlay)
+            // 2. Render Skills
             renderHoverCards('skills-grid', data.technical_skills, {
                 "geospatial_remote_sensing": "🌍",
                 "programming_data_science": "💻",
                 "numerical_modeling": "🌊"
-            }, "h-[22rem]");
+            });
 
             // 3. Render Achievements
             renderAchievementsCard('achievements-container', data.achievements_scientific_contribution);
 
             setupScrollAnimation();
-            setup3DTiltEffect(); // Fitur Zoom aktif di sini
+            setup3DTiltEffect();
         })
         .catch(err => console.error("Data error:", err));
 });
 
-// BUILD HOVER SILHOUETTE FOR PROJECTS
+// BUILD PROJECT CARDS (TEKS LANGSUNG TERLIHAT & HOVER OVERLAY GLOW)
 function renderProjectCards(containerId, projects) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -47,44 +47,35 @@ function renderProjectCards(containerId, projects) {
         const title = cleanText(proj.nama);
         const icon = projIcons[idx % projIcons.length];
         const role = proj.role ? cleanText(proj.role) : 'IBF System Model';
-        
-        // Teks dibuat jauh lebih terang (text-white/text-cyan-100)
-        const listHtml = proj.details.map(d => `<li class="flex gap-2 items-start"><span class="text-cyan-300 font-bold">▹</span><span class="text-sm font-semibold text-slate-100">${cleanText(d)}</span></li>`).join('');
+        const listHtml = proj.details.map(d => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-bold">▹</span><span class="text-xs md:text-sm text-slate-200">${cleanText(d)}</span></li>`).join('');
         
         let docLink = proj.portofolio_documentation ? 
-            `<a href="${cleanText(proj.portofolio_documentation)}" target="_blank" class="mt-4 inline-flex items-center justify-center w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white border border-cyan-400 rounded-lg text-[11px] font-bold tracking-widest transition-colors z-50 relative pointer-events-auto shadow-[0_0_15px_rgba(34,211,238,0.6)]">
+            `<a href="${cleanText(proj.portofolio_documentation)}" target="_blank" class="mt-4 inline-flex items-center justify-center w-full py-2.5 bg-cyan-950/80 hover:bg-cyan-800/90 text-cyan-300 border border-cyan-500/50 rounded-lg text-[11px] font-bold font-mono tracking-wider transition-colors z-30 relative pointer-events-auto">
                 [ ACCESS SYSTEM DOCS ↗ ]
             </a>` : '';
 
         const card = document.createElement('div');
-        card.className = `glass-card light-sweep tilt-element group p-6 h-[22rem] flex flex-col items-center justify-center text-center rounded-2xl fade-in-up cursor-pointer`;
+        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl fade-in-up flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
         
         card.innerHTML = `
-            <!-- PREVIEW (Fades out gently on hover) -->
-            <div class="transition-opacity duration-300 group-hover:opacity-0 flex flex-col items-center w-full">
-                <div class="text-7xl mb-4 drop-shadow-[0_0_25px_rgba(45,212,191,0.8)]">${icon}</div>
-                <h3 class="text-xl font-extrabold text-cyan-300 font-mono tracking-wide leading-snug drop-shadow-md">${title.split('-')[0]}</h3>
-                <div class="mt-5 px-4 py-1.5 border border-cyan-400/50 rounded-full text-[11px] text-cyan-300 font-mono font-bold animate-pulse bg-cyan-950/60 shadow-lg">HOVER TO DECRYPT</div>
-            </div>
-
-            <!-- FULL TEXT OVERLAY (Fades in on hover with Pitch Black background for high readability) -->
-            <div class="absolute inset-0 bg-black/98 backdrop-blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col text-left overflow-y-auto z-10 border border-cyan-300 rounded-2xl shadow-2xl">
-                <div class="sticky top-0 bg-black/98 pb-2 mb-4 border-b border-cyan-400/50">
-                    <div class="text-[10px] text-cyan-400 font-mono font-bold mb-1">> ROLE: ${role}</div>
-                    <h4 class="text-cyan-200 font-extrabold font-mono text-sm leading-tight">${title}</h4>
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-4xl drop-shadow-[0_0_15px_rgba(45,212,191,0.6)]">${icon}</span>
+                    <span class="text-[10px] text-cyan-400 font-mono font-bold uppercase tracking-widest px-2.5 py-1 bg-cyan-950/80 border border-cyan-800 rounded-full">${role}</span>
                 </div>
-                <ul class="text-sm space-y-4 text-slate-100 font-mono flex-grow">
+                <h3 class="text-lg font-extrabold text-cyan-300 font-mono mb-4 leading-snug">${title}</h3>
+                <ul class="space-y-2.5 font-mono mb-4">
                     ${listHtml}
                 </ul>
-                ${docLink}
             </div>
+            ${docLink}
         `;
         container.appendChild(card);
     });
 }
 
-// BUILD HOVER SILHOUETTE FOR SKILLS
-function renderHoverCards(containerId, dataset, iconMap, heightClass) {
+// BUILD SKILLS CARDS
+function renderHoverCards(containerId, dataset, iconMap) {
     const container = document.getElementById(containerId);
     if (!container) return;
     const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
@@ -92,25 +83,18 @@ function renderHoverCards(containerId, dataset, iconMap, heightClass) {
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
         const icon = iconMap[key] || "✨";
-        const listHtml = items.map(i => `<li class="flex gap-2 items-start"><span class="text-cyan-300 font-bold">▹</span><span class="text-sm font-semibold text-slate-100">${cleanText(i)}</span></li>`).join('');
+        const listHtml = items.map(i => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-bold">▹</span><span class="text-xs md:text-sm text-slate-200">${cleanText(i)}</span></li>`).join('');
 
         const card = document.createElement('div');
-        card.className = `glass-card light-sweep tilt-element group p-6 ${heightClass} flex flex-col items-center justify-center text-center rounded-2xl fade-in-up cursor-pointer`;
+        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl fade-in-up flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
         
         card.innerHTML = `
-            <div class="transition-opacity duration-300 group-hover:opacity-0 flex flex-col items-center w-full">
-                <div class="text-7xl mb-4 drop-shadow-[0_0_25px_rgba(45,212,191,0.8)]">${icon}</div>
-                <h3 class="text-xl font-extrabold text-cyan-300 font-mono tracking-wide drop-shadow-md">${title}</h3>
-                <div class="mt-5 px-4 py-1.5 border border-cyan-400/50 rounded-full text-[11px] text-cyan-300 font-mono font-bold animate-pulse bg-cyan-950/60 shadow-lg">HOVER TO SCAN DATA</div>
-            </div>
-
-            <div class="absolute inset-0 bg-black/98 backdrop-blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col text-left overflow-y-auto z-10 border border-cyan-300 rounded-2xl shadow-2xl">
-                <div class="sticky top-0 bg-black/98 pb-2 mb-4 border-b border-cyan-400/50">
-                    <h4 class="text-cyan-200 font-extrabold font-mono text-sm flex items-center gap-2">
-                        <span class="animate-spin-slow">⚙️</span> DATA: ${title}
-                    </h4>
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl drop-shadow-[0_0_15px_rgba(45,212,191,0.6)]">${icon}</span>
+                    <h3 class="text-base font-extrabold text-cyan-300 font-mono tracking-wide">${title}</h3>
                 </div>
-                <ul class="text-sm space-y-4 text-slate-100 font-mono">
+                <ul class="space-y-2.5 font-mono">
                     ${listHtml}
                 </ul>
             </div>
@@ -125,17 +109,17 @@ function renderAchievementsCard(containerId, achData) {
     if (!container) return;
     const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
 
-    let achList = achData.selected_achievements.map(a => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-extrabold text-lg leading-none">»</span><span class="text-sm font-semibold">${cleanText(a)}</span></li>`).join('');
+    let achList = achData.selected_achievements.map(a => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-extrabold text-base">»</span><span class="text-xs md:text-sm font-mono text-slate-200">${cleanText(a)}</span></li>`).join('');
 
     container.innerHTML = `
-        <div class="glass-card light-sweep tilt-element p-8 md:p-12 rounded-3xl fade-in-up border-cyan-400/50 cursor-default">
-            <div class="flex flex-col md:flex-row items-center gap-6 mb-8 pb-8 border-b border-cyan-500/40">
-                <div class="text-7xl drop-shadow-[0_0_25px_rgba(45,212,191,0.9)] animate-pulse">🏆</div>
+        <div class="glass-card light-sweep tilt-element p-8 md:p-10 rounded-3xl fade-in-up border border-cyan-400/50 cursor-default">
+            <div class="flex flex-col md:flex-row items-center gap-5 mb-6 pb-6 border-b border-cyan-500/40">
+                <div class="text-6xl drop-shadow-[0_0_20px_rgba(45,212,191,0.8)]">🏆</div>
                 <div class="text-center md:text-left">
-                    <h4 class="text-2xl md:text-3xl font-extrabold text-cyan-100 font-mono text-glow">${cleanText(achData.general)}</h4>
+                    <h4 class="text-xl md:text-2xl font-extrabold text-cyan-100 font-mono text-glow">${cleanText(achData.general)}</h4>
                 </div>
             </div>
-            <ul class="grid md:grid-cols-2 gap-6 text-slate-100 font-mono">
+            <ul class="grid md:grid-cols-2 gap-4 text-slate-200">
                 ${achList}
             </ul>
         </div>
@@ -152,21 +136,19 @@ function setup3DTiltEffect() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // Kalkulasi kemiringan
-            const tiltX = ((y - centerY) / centerY) * -12; 
-            const tiltY = ((x - centerX) / centerX) * 12;
+            const tiltX = ((y - centerY) / centerY) * -8; 
+            const tiltY = ((x - centerX) / centerX) * 8;
             
-            // Transform ditambah skala 1.08 untuk Zoom luar biasa saat hover
-            el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.08, 1.08, 1.08)`;
+            el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.04, 1.04, 1.04)`;
         });
         
         el.addEventListener('mouseleave', () => {
-            // Reset ke ukuran normal saat kursor pergi
             el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         });
     });
 }
 
+// DATA SCIENCE CANVAS (ANIMASI KODE PYTHON HIJAU NEON)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
@@ -184,7 +166,6 @@ function initDataScienceCanvas() {
     window.addEventListener('resize', resize);
     resize();
 
-    // BANK KODE PYTHON DATA SCIENCE, AI, REMOTE SENSING & GEOSAINS
     const scripts = [
         "import xarray as xr", "import geopandas as gpd", "import rasterio as rio",
         "ds = xr.open_dataset('inaflews_rain.nc')", "gdf = gpd.read_file('sulsel_boundary.geojson')",
@@ -214,8 +195,8 @@ function initDataScienceCanvas() {
         x: Math.random() * width,
         y: Math.random() * height,
         speed: Math.random() * 2.2 + 0.9,
-        fontSize: Math.floor(Math.random() * 4) + 7,
-        opacity: Math.random() * 0.35 + 0.35
+        fontSize: Math.floor(Math.random() * 4) + 13,
+        opacity: Math.random() * 0.45 + 0.55
     }));
 
     const nodes = Array.from({ length: 70 }, () => ({
@@ -229,7 +210,6 @@ function initDataScienceCanvas() {
     function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        // 1. DOKUMEN PYTHON MATRIX SCROLLING (WARNA HIJAU NEON)
         codes.forEach(c => {
             c.y -= c.speed;
             if (c.y < -30) {
@@ -239,17 +219,14 @@ function initDataScienceCanvas() {
             }
 
             ctx.font = `bold ${c.fontSize}px 'Fira Code', monospace`;
-            
-            // --- WARNA HIJAU NEON MATRIX ---
             ctx.fillStyle = `rgba(52, 211, 153, ${c.opacity})`;
             ctx.shadowBlur = 12;
-            ctx.shadowColor = '#10b981'; // Glow Hijau Neon
+            ctx.shadowColor = '#10b981';
             
             ctx.fillText(c.text, c.x, c.y);
             ctx.shadowBlur = 0;
         });
 
-        // 2. JARINGAN DATA NODES
         nodes.forEach((n, i) => {
             n.x += n.vx;
             n.y += n.vy;
@@ -293,4 +270,11 @@ function initDataScienceCanvas() {
         requestAnimationFrame(animate);
     }
     animate();
+}
+
+function setupScrollAnimation() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 }
