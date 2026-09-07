@@ -103,14 +103,14 @@ function setup3DTiltEffect() {
     });
 }
 
-// MATH CANVAS INTERAKTIF
+// MATH CANVAS INTERAKTIF (LENGKAP DENGAN TRIGONOMETRI & LEBIH PADAT)
 function initMathFormulaCanvas() {
     const canvas = document.getElementById('math-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
 
-    const mouse = { x: null, y: null, radius: 150 };
+    const mouse = { x: null, y: null, radius: 180 };
     window.addEventListener('mousemove', e => {
         mouse.x = e.x;
         mouse.y = e.y;
@@ -127,19 +127,35 @@ function initMathFormulaCanvas() {
     window.addEventListener('resize', resize);
     resize();
 
+    // DAFTAR RUMUS MELIMPAH: TRIGONOMETRI + FISIKA + KALKULUS + EDTECH
     const formulas = [
+        // --- TRIGONOMETRI ---
+        "sin²x + cos²x = 1", "tan x = sin x / cos x", "1 + tan²x = sec²x", 
+        "sin(A±B) = sinA cosB ± cosA sinB", "cos(A±B) = cosA cosB ∓ sinA sinB",
+        "sin(2x) = 2 sin x cos x", "cos(2x) = cos²x - sin²x", "a/sin A = b/sin B = c/sin C",
+        "c² = a² + b² - 2ab cos C", "d/dx(sin x) = cos x", "d/dx(cos x) = -sin x",
+        "∫ sin x dx = -cos x", "∫ cos x dx = sin x", "tan(2x) = 2tan x / (1 - tan²x)",
+        "sin A + sin B = 2 sin((A+B)/2) cos((A-B)/2)", "e^iθ = cos θ + i sin θ",
+        
+        // --- SAINS, FISIKA & METEOROLOGI ---
         "E=mc²", "PV=nRT", "∫e^-x²dx=√π", "z=(x-μ)/σ", "∇·V=0", 
-        "e^iπ+1=0", "WBGT=0.7Tw+0.2Tg+0.1Td", "Q=m·c·ΔT", "Bloom's Taxonomy", "UbD Framework"
+        "WBGT=0.7Tw+0.2Tg+0.1Td", "Q=m·c·ΔT", "∇×E=-∂B/∂t", "F=G(m₁m₂)/r²", 
+        "L=-∑ylog(ŷ)", "Ri=(g/θ)(∂θ/∂z)/(∂u/∂z)²", "P(A|B)=P(B|A)P(A)/P(B)",
+        "λ=h/p", "S=k·ln(Ω)", "F=ma", "v=f·λ", "pH=-log[H+]", "ΔG=ΔH-TΔS",
+        
+        // --- PEDAGOGI & EDTECH ---
+        "Bloom's Taxonomy", "UbD Framework", "HOTS Assessment", "OSN Kebumian", "CBT System"
     ];
 
-    const particles = Array.from({ length: 40 }, () => ({
+    // JUMLAH PARTIKEL DITAMBAHKAN MENJADI 65 AGAR LAYAR TERISI LEBIH RAMAI
+    const particles = Array.from({ length: 65 }, () => ({
         text: formulas[Math.floor(Math.random() * formulas.length)],
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 8 + 10,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5 - 0.5,
-        opacity: Math.random() * 0.4 + 0.1
+        size: Math.random() * 8 + 14, // Ukuran font tetap nyaman terbaca (14px - 22px)
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6 - 0.4,
+        opacity: Math.random() * 0.45 + 0.25
     }));
 
     function animate() {
@@ -164,11 +180,12 @@ function initMathFormulaCanvas() {
                 }
             }
 
-            ctx.font = `${p.size}px 'Fira Code', monospace`;
+            ctx.font = `bold ${p.size}px 'Fira Code', monospace`;
             ctx.fillStyle = `rgba(16, 185, 129, ${p.opacity})`;
-            ctx.shadowBlur = 5;
+            ctx.shadowBlur = 8;
             ctx.shadowColor = '#10b981';
             ctx.fillText(p.text, p.x, p.y);
+            ctx.shadowBlur = 0;
         });
 
         requestAnimationFrame(animate);
