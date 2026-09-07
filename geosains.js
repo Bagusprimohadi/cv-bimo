@@ -148,7 +148,7 @@ function setup3DTiltEffect() {
     });
 }
 
-// DATA SCIENCE CANVAS (ANIMASI KODE PYTHON HIJAU NEON)
+// DATA SCIENCE CANVAS (ANIMASI KODE PYTHON HIJAU NEON - LEBIH SEDIKIT & KECIL)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
@@ -190,21 +190,22 @@ function initDataScienceCanvas() {
         "while True: stream_meteorological_telemetry()"
     ];
 
-    const codes = Array.from({ length: 120 }, () => ({
+    // JUMLAH DIUBAH MENJADI 40 ELEMEN & UKURAN FONT DIPERKEOCIL (9px - 11px)
+    const codes = Array.from({ length: 40 }, () => ({
         text: scripts[Math.floor(Math.random() * scripts.length)],
         x: Math.random() * width,
         y: Math.random() * height,
-        speed: Math.random() * 2.2 + 0.9,
-        fontSize: Math.floor(Math.random() * 4) + 13,
-        opacity: Math.random() * 0.45 + 0.55
+        speed: Math.random() * 1.8 + 0.6,
+        fontSize: Math.floor(Math.random() * 3) + 9, // Ukuran font 9px - 11px
+        opacity: Math.random() * 0.35 + 0.4
     }));
 
-    const nodes = Array.from({ length: 70 }, () => ({
+    const nodes = Array.from({ length: 50 }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 1.6,
-        vy: (Math.random() - 0.5) * 1.6,
-        size: Math.random() * 2.5 + 1
+        vx: (Math.random() - 0.5) * 1.4,
+        vy: (Math.random() - 0.5) * 1.4,
+        size: Math.random() * 2 + 1
     }));
 
     function animate() {
@@ -220,7 +221,7 @@ function initDataScienceCanvas() {
 
             ctx.font = `bold ${c.fontSize}px 'Fira Code', monospace`;
             ctx.fillStyle = `rgba(52, 211, 153, ${c.opacity})`;
-            ctx.shadowBlur = 12;
+            ctx.shadowBlur = 8;
             ctx.shadowColor = '#10b981';
             
             ctx.fillText(c.text, c.x, c.y);
@@ -239,15 +240,15 @@ function initDataScienceCanvas() {
                 let dy = mouse.y - n.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < mouse.radius) {
-                    n.x -= (dx / dist) * 3;
-                    n.y -= (dy / dist) * 3;
+                    n.x -= (dx / dist) * 2.5;
+                    n.y -= (dy / dist) * 2.5;
                 }
             }
 
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(16, 185, 129, 0.9)";
-            ctx.shadowBlur = 6;
+            ctx.fillStyle = "rgba(16, 185, 129, 0.8)";
+            ctx.shadowBlur = 4;
             ctx.shadowColor = '#10b981';
             ctx.fill();
             ctx.shadowBlur = 0;
@@ -256,10 +257,10 @@ function initDataScienceCanvas() {
                 let dx = n.x - nodes[j].x;
                 let dy = n.y - nodes[j].y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 130) {
+                if (dist < 120) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(16, 185, 129, ${0.45 - dist / 300})`;
-                    ctx.lineWidth = 0.9;
+                    ctx.strokeStyle = `rgba(16, 185, 129, ${0.35 - dist / 300})`;
+                    ctx.lineWidth = 0.8;
                     ctx.moveTo(n.x, n.y);
                     ctx.lineTo(nodes[j].x, nodes[j].y);
                     ctx.stroke();
@@ -270,11 +271,4 @@ function initDataScienceCanvas() {
         requestAnimationFrame(animate);
     }
     animate();
-}
-
-function setupScrollAnimation() {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 }
