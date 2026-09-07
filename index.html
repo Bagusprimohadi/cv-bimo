@@ -8,6 +8,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Hubungkan ke file CSS eksternal -->
   <link rel="stylesheet" href="beranda.css">
+
+  <!-- ========================================== -->
+  <!-- GROUP STYLE KHUSUS: WA COLLABORATION SECTION -->
+  <!-- ========================================== -->
+  <style>
+    .wa-cta-card {
+      background: rgba(13, 148, 136, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      box-shadow: 0 0 30px rgba(13, 148, 136, 0.15);
+      transition: all 0.3s ease-in-out;
+    }
+    .wa-cta-card:hover {
+      border-color: #2dd4bf;
+      box-shadow: 0 0 45px rgba(45, 212, 191, 0.3);
+    }
+    .btn-wa-glow {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      transition: all 0.3s ease;
+    }
+    .btn-wa-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.7);
+    }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
 
@@ -83,9 +110,34 @@
       <h3 class="text-3xl font-bold text-white mb-2">Live Ecosystem <span class="text-teal-400">Platforms</span></h3>
       <p class="text-slate-400">Akses langsung ke sistem operasional dan platform edukasi.</p>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="platforms-grid">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24" id="platforms-grid">
       <!-- Injected via JS -->
     </div>
+
+    <!-- ======================================================= -->
+    <!-- SECTION KHUSUS: CALL TO ACTION (CTA) WHATSAPP KELOLAAN -->
+    <!-- ======================================================= -->
+    <section class="wa-cta-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden my-12 border border-teal-500/30">
+      <div class="max-w-3xl mx-auto relative z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold tracking-widest mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> DIRECT COLLABORATION CHANNEL
+        </div>
+        
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+          Tertarik Kolaborasi, Pelatihan, atau Skema Kerja Sama Lainnya?
+        </h3>
+        
+        <p class="text-slate-300 text-base md:text-lg mb-8 leading-relaxed font-light">
+          Buka ruang diskusi untuk pengembangan sistem AI Geosains, pelatihan pembinaan OSN, perancangan kurikulum EdTech, maupun kerja sama institusi lainnya.
+        </p>
+
+        <!-- Tombol WhatsApp Dinamis -->
+        <a id="btn-wa-direct" href="#" target="_blank" rel="noopener noreferrer" class="btn-wa-glow inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-white font-bold text-base md:text-lg tracking-wide transition-all">
+          <span class="text-2xl">💬</span> Hubungi via WhatsApp (0822-6811-8842)
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-teal-900/50 mt-10 py-8 text-center text-slate-500 text-sm">
@@ -94,5 +146,21 @@
 
   <!-- Hubungkan ke file JavaScript eksternal -->
   <script src="beranda.js"></script>
+
+  <!-- ========================================== -->
+  <!-- GROUP SCRIPT KHUSUS: WA CTA GENERATOR -->
+  <!-- ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const waNumber = "6282268118842";
+      const message = "Halo Pak Bagus Primohadi, saya tertarik untuk berdiskusi mengenai peluang kolaborasi / request pelatihan / skema kerja sama.";
+      const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+      
+      const waButton = document.getElementById("btn-wa-direct");
+      if (waButton) {
+        waButton.href = waUrl;
+      }
+    });
+  </script>
 </body>
 </html>
