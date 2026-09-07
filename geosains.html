@@ -8,11 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="geosains.css">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black bg-black text-slate-200">
+<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black bg-black text-slate-200 relative">
 
-  <!-- BACKGROUND: SCROLLING CODE & DATA NETWORK -->
+  <!-- BACKGROUND: SCROLLING CODE & DATA NETWORK (z-index paling belakang) -->
   <canvas id="data-canvas"></canvas>
-  <!-- OVERLAY GRADASI CERAH TENGAH & GELAP DI UJUNG -->
+  <!-- OVERLAY GRADASI BACKGROUND -->
   <div class="cyber-overlay"></div>
 
   <!-- HEADER NAVIGATION -->
@@ -36,11 +36,11 @@
     </div>
   </header>
 
-  <!-- MAIN KONTEN -->
-  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-10">
+  <!-- MAIN KONTEN (z-10 memastikan konten tampil di atas canvas) -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-10 w-full">
     
     <!-- HERO SECTION -->
-    <div class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
+    <div class="text-center max-w-4xl mx-auto mb-20">
       <div class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full glass-card text-cyan-100 text-xs font-mono font-bold tracking-widest mb-6 border-cyan-400/50 shadow-[0_0_20px_rgba(45,212,191,0.6)] light-sweep">
         <span class="text-lg">🛰️</span> MULTI-HAZARD EARLY WARNING SYSTEM DEVELOPER
       </div>
@@ -52,12 +52,11 @@
       </div>
     </div>
 
-    <!-- IBF PROJECTS (INTERACTIVE CARDS) -->
+    <!-- IBF PROJECTS -->
     <div class="mb-24">
-      <div class="text-center mb-12 fade-in-up">
+      <div class="text-center mb-12">
         <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// OPERATIONAL SYSTEMS</span>
         <h3 class="text-3xl font-extrabold text-white text-glow mt-1">🌊 Early Warning & Risk Forecasts</h3>
-        <p class="text-xs text-cyan-400 mt-2 font-mono hover:text-cyan-200 transition-colors">>> Hover system grid to decrypt and zoom operational data <<</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
         <!-- JS Inject -->
@@ -66,10 +65,9 @@
 
     <!-- TECHNICAL SKILLS -->
     <div class="mb-24">
-      <div class="text-center mb-12 fade-in-up">
+      <div class="text-center mb-12">
         <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// TECH STACK & ENGINE</span>
         <h3 class="text-3xl font-extrabold text-white text-glow mt-1">⚙️ Technical & Modeling Expertise</h3>
-        <p class="text-xs text-cyan-400 mt-2 font-mono hover:text-cyan-200 transition-colors">>> Hover grid to zoom and scan competencies <<</p>
       </div>
       <div class="grid md:grid-cols-3 gap-8" id="skills-grid">
         <!-- JS Inject -->
@@ -78,7 +76,7 @@
 
     <!-- ACHIEVEMENTS -->
     <div class="mb-20">
-      <div class="text-center mb-12 fade-in-up">
+      <div class="text-center mb-12">
         <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// SCIENTIFIC MILESTONES</span>
         <h3 class="text-3xl font-extrabold text-white text-glow mt-1">🔬 Riset & Publikasi Ilmiah</h3>
       </div>
