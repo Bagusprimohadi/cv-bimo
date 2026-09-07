@@ -1,0 +1,115 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+/* --- GLOBAL & THEME --- */
+:root {
+  --teal-neon: #2dd4bf;
+  --teal-dark: #0d9488;
+  --bg-dark: #020617; /* Very dark slate */
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-dark);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* --- BACKGROUND ANIMATION (Cyber Grid & Glowing Orbs) --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.1), transparent 30%);
+  z-index: -2;
+  animation: rotateGradient 30s linear infinite;
+}
+
+@keyframes rotateGradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- CANVAS PARTICLE (Rendered by JS) --- */
+#tech-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none; /* Agar tidak mengganggu klik tombol */
+  opacity: 0.6;
+}
+
+/* --- NEON & GLASSMORPHISM EFFECTS --- */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 0 25px rgba(20, 184, 166, 0.3), inset 0 0 10px rgba(45, 212, 191, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Teks Neon Bercahaya */
+.text-glow {
+  color: var(--teal-neon);
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+/* Navigasi Aktif dengan Garis Neon Bergerak */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--teal-neon);
+  box-shadow: 0 0 10px var(--teal-neon);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Efek Tombol Pulse (Denyut) */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.3), transparent);
+  transform: rotate(45deg);
+  animation: lightSweep 3s infinite;
+}
+
+@keyframes lightSweep {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
