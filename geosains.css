@@ -1,124 +1,114 @@
-/* --- GLOBAL THEME --- */
+/* GLOBAL THEME */
 :root {
   --cyan-neon: #2dd4bf;
   --blue-neon: #38bdf8;
-  --bg-dark: #020617; /* Deep Navy Black */
+  --bg-black: #020617;
 }
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background-color: var(--bg-dark);
-  color: #e2e8f0;
+  background-color: var(--bg-black);
   overflow-x: hidden;
-  margin: 0;
 }
 
-/* --- ANIMATED RADAR SWEEP BACKGROUND --- */
-.radar-bg {
+/* CANVAS BACKGROUND */
+#data-canvas {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: -1;
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08), transparent 60%),
-    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
-}
-
-.radar-bg::after {
-  content: "";
-  position: absolute;
-  top: -50%; left: -50%; width: 200vw; height: 200vh;
-  background: conic-gradient(from 0deg at 50% 50%, rgba(45, 212, 191, 0.1) 0deg, transparent 60deg, transparent 360deg);
-  animation: radarSweep 12s linear infinite;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0;
   pointer-events: none;
 }
 
-@keyframes radarSweep {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.cyber-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.05), #000000 85%);
+  z-index: 1;
+  pointer-events: none;
 }
 
+/* GLASSMORPHISM & NEON GLOW */
+.glass-header {
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* The Box Card itself with the NEON BACKGLOW */
+.glass-card {
+  background: rgba(14, 165, 233, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ON HOVER: Neon Glow Behind the Card */
+.glass-card:hover {
+  border-color: var(--cyan-neon);
+  /* This creates the intense neon glow BEHIND the box */
+  box-shadow: 0 0 40px rgba(45, 212, 191, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.15);
+  z-index: 20;
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(45, 212, 191, 0.6), 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+/* LIGHT SWEEP EFFECT */
+.light-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+  transform: skewX(-25deg);
+  animation: sweep 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  0% { left: -150%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ANIMATIONS */
 .animate-spin-slow {
-  animation: spin 20s linear infinite;
+  animation: spin 15s linear infinite;
 }
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* --- GLASSMORPHISM & NEON EFFECTS --- */
-.glass-header {
-  background: rgba(2, 6, 23, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.glass-panel {
-  background: rgba(14, 165, 233, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.glass-panel:hover {
-  background: rgba(14, 165, 233, 0.08);
-  border-color: rgba(45, 212, 191, 0.6);
-  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25), inset 0 0 15px rgba(45, 212, 191, 0.1);
-  transform: translateY(-6px);
-}
-
-/* Teks Bercahaya */
-.text-glow {
-  color: var(--cyan-neon);
-  text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(56, 189, 248, 0.4);
-}
-
-/* Navigasi Aktif */
+/* NAV LINKS */
 .nav-link {
   position: relative;
-  text-decoration: none;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 }
-.nav-link::after {
+.nav-link::before {
   content: '';
   position: absolute; width: 0; height: 2px;
   bottom: 0; left: 0;
-  background-color: var(--cyan-neon);
+  background: var(--cyan-neon);
   box-shadow: 0 0 10px var(--cyan-neon);
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease;
 }
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::before, .nav-link.active::before {
   width: 100%;
 }
 
-/* Custom List untuk Project & Skills */
-.neon-list {
-  list-style: none;
-  padding-left: 0;
-}
-.neon-list li {
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 10px;
-  color: #cbd5e1;
-  font-size: 0.88rem;
-  line-height: 1.6;
-}
-.neon-list li::before {
-  content: '⚡';
-  position: absolute;
-  left: 0; top: 0;
-  font-size: 0.9rem;
-}
-
-/* Scroll Animation Classes */
+/* SCROLL ANIMATION */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in-up.visible {
   opacity: 1;
