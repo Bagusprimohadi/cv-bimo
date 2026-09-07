@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Jalankan animasi canvas di background
+    // 1. Jalankan animasi canvas di background
     initDataScienceCanvas();
 
-    // Fetch data JSON
+    // 2. Fetch data geosains.json
     fetch('geosains.json')
         .then(res => {
-            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
             return res.json();
         })
         .then(data => {
-            // Helper pembersih string yang aman (mencegah error jika data sanitasinya beda)
+            // Helper pembersih teks aman
             const cleanText = (str) => {
                 if (typeof str !== 'string') return str || '';
-                return str.replace(/\/g, '').trim();
+                return str.split('[cite')[0].replace(/\\/g, '').trim();
             };
 
-            // 1. Header Title & About Me
+            // Header & About Me
             if (data.header) {
                 const geoTitle = document.getElementById('geo-title');
                 if (geoTitle) geoTitle.textContent = cleanText(data.header.title);
@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // 2. Render Projects (Early Warning Systems)
+            // Render Projects
             if (data.project_experience && Array.isArray(data.project_experience.projects)) {
                 renderProjectCards('projects-grid', data.project_experience.projects, cleanText);
             }
 
-            // 3. Render Technical Skills
+            // Render Technical Skills
             if (data.technical_skills) {
                 renderHoverCards('skills-grid', data.technical_skills, {
                     "geospatial_remote_sensing": "🌍",
@@ -46,24 +46,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, cleanText);
             }
 
-            // 4. Render Achievements
+            // Render Achievements
             if (data.achievements_scientific_contribution) {
                 renderAchievementsCard('achievements-container', data.achievements_scientific_contribution, cleanText);
             }
 
-            // Inisialisasi efek animasi scroll & 3D tilt
-            setupScrollAnimation();
+            // Inisialisasi efek 3D tilt
             setup3DTiltEffect();
         })
-        .catch(err => console.error("Error loading geosains.json:", err));
+        .catch(err => {
+            console.error("Gagal memuat geosains.json:", err);
+        });
 });
 
-// RENDER PROJECT CARDS
+// BUILD PROJECT CARDS
 function renderProjectCards(containerId, projects, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     const projIcons = ["🌩️", "🌊", "☀️", "🌪️", "🏖️", "🌀"];
+    container.innerHTML = ""; // Bersihkan kontainer
 
     projects.forEach((proj, idx) => {
         const title = cleanText(proj.nama);
@@ -84,7 +86,8 @@ function renderProjectCards(containerId, projects, cleanText) {
             </a>` : '';
 
         const card = document.createElement('div');
-        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl fade-in-up flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
+        // Menghapus kelas fade-in-up agar elemen tidak hilang karena opacity 0
+        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
         
         card.innerHTML = `
             <div>
@@ -103,10 +106,11 @@ function renderProjectCards(containerId, projects, cleanText) {
     });
 }
 
-// RENDER SKILLS CARDS
+// BUILD SKILLS CARDS
 function renderHoverCards(containerId, dataset, iconMap, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
+    container.innerHTML = "";
 
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
@@ -121,7 +125,7 @@ function renderHoverCards(containerId, dataset, iconMap, cleanText) {
         `).join('');
 
         const card = document.createElement('div');
-        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl fade-in-up flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
+        card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
         
         card.innerHTML = `
             <div>
@@ -138,7 +142,7 @@ function renderHoverCards(containerId, dataset, iconMap, cleanText) {
     }
 }
 
-// RENDER ACHIEVEMENTS CARD
+// ACHIEVEMENTS RENDER
 function renderAchievementsCard(containerId, achData, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -152,7 +156,7 @@ function renderAchievementsCard(containerId, achData, cleanText) {
     `).join('');
 
     container.innerHTML = `
-        <div class="glass-card light-sweep tilt-element p-8 md:p-10 rounded-3xl fade-in-up border border-cyan-400/50 cursor-default">
+        <div class="glass-card light-sweep tilt-element p-8 md:p-10 rounded-3xl border border-cyan-400/50 cursor-default">
             <div class="flex flex-col md:flex-row items-center gap-5 mb-6 pb-6 border-b border-cyan-500/40">
                 <div class="text-6xl drop-shadow-[0_0_20px_rgba(45,212,191,0.8)]">🏆</div>
                 <div class="text-center md:text-left">
@@ -166,7 +170,7 @@ function renderAchievementsCard(containerId, achData, cleanText) {
     `;
 }
 
-// EFEK TILT 3D
+// EFEK 3D TILT SAAT HOVER
 function setup3DTiltEffect() {
     document.querySelectorAll('.tilt-element').forEach(el => {
         el.addEventListener('mousemove', e => {
@@ -188,7 +192,7 @@ function setup3DTiltEffect() {
     });
 }
 
-// CANVAS KODE PYTHON (Sesuai Konfigurasi 40 Kode Ukuran Kecil)
+// CANVAS ANIMASI KODE PYTHON HIJAU NEON (40 ITEMS, FONT KECIL)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
@@ -310,12 +314,4 @@ function initDataScienceCanvas() {
         requestAnimationFrame(animate);
     }
     animate();
-}
-
-// ANIMASI SCROLL OBSERVATION
-function setupScrollAnimation() {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 }
