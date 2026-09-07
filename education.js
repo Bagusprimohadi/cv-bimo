@@ -41,16 +41,40 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => console.error("Data error:", err));
 });
 
-// EVENT BINDING MODAL GLOBAL
+// SYSTEM POPUP HOVER TRACKER (STABIL & TIDAK BUG)
 function renderInteractiveCards(containerId, dataset, iconMap, heightClass, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = "";
 
     const overlay = document.getElementById('global-modal-overlay');
+    const modalBox = document.getElementById('global-modal-box');
     const modalIcon = document.getElementById('modal-icon');
     const modalTitle = document.getElementById('modal-title');
     const modalList = document.getElementById('modal-list');
+
+    let isHoveringCard = false;
+    let isHoveringModal = false;
+
+    function checkModalStatus() {
+        setTimeout(() => {
+            if (isHoveringCard || isHoveringModal) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }, 50);
+    }
+
+    modalBox.addEventListener('mouseenter', () => {
+        isHoveringModal = true;
+        checkModalStatus();
+    });
+
+    modalBox.addEventListener('mouseleave', () => {
+        isHoveringModal = false;
+        checkModalStatus();
+    });
 
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
@@ -70,8 +94,8 @@ function renderInteractiveCards(containerId, dataset, iconMap, heightClass, clea
             </div>
         `;
 
-        // SAAT HOVER KARTU: TAMPILKAN MODAL DI TENGAH LAYAR
         card.addEventListener('mouseenter', () => {
+            isHoveringCard = true;
             modalIcon.textContent = icon;
             modalTitle.textContent = title;
             modalList.innerHTML = itemsArray.map(i => `
@@ -81,12 +105,12 @@ function renderInteractiveCards(containerId, dataset, iconMap, heightClass, clea
                 </li>
             `).join('');
 
-            overlay.classList.add('active');
+            checkModalStatus();
         });
 
-        // SAAT KURSOR KELUAR DARI KARTU: SEMBUNYIKAN MODAL
         card.addEventListener('mouseleave', () => {
-            overlay.classList.remove('active');
+            isHoveringCard = false;
+            checkModalStatus();
         });
 
         container.appendChild(card);
