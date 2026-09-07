@@ -3,86 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Geospatial Data Science & AI Systems | Bagus Primohadi</title>
+  <title>Geosains AI & Data Science | Bagus Primohadi</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="geosains.css">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
+<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black bg-black text-slate-200">
 
-  <!-- RADAR SWEEP BACKGROUND (CSS Only) -->
-  <div class="radar-bg"></div>
+  <!-- BACKGROUND: SCROLLING CODE & DATA NETWORK -->
+  <canvas id="data-canvas"></canvas>
+  <div class="cyber-overlay"></div>
 
   <!-- HEADER NAVIGATION -->
-  <header class="sticky top-0 z-50 glass-header border-b border-cyan-900/50">
+  <header class="sticky top-0 z-50 glass-header border-b border-cyan-500/30">
     <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="flex items-center gap-2">
-        <span class="text-2xl animate-spin-slow">🛰️</span>
-        <h1 class="text-xl font-bold tracking-wider text-cyan-400 text-glow" id="nav-name">GEOSAINS AI HUB</h1>
+      <div class="flex items-center gap-3">
+        <span class="text-3xl animate-spin-slow drop-shadow-[0_0_10px_rgba(45,212,191,0.8)]">🌍</span>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-wider text-cyan-400 text-glow">GEOSAINS AI HUB</h1>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <p class="text-[10px] text-cyan-500 font-mono tracking-widest uppercase">[ SENSOR NETWORK: ACTIVE ]</p>
+          </div>
+        </div>
       </div>
-      <nav class="flex gap-6 text-sm font-semibold tracking-wide text-slate-400">
-        <a href="index.html" class="nav-link hover:text-cyan-300 transition-colors">🌐 BERANDA</a>
-        <a href="geosains.html" class="nav-link active hover:text-cyan-300 transition-colors">🛰️ GEOSAINS AI</a>
-        <a href="education.html" class="nav-link hover:text-cyan-300 transition-colors">🎓 EDTECH</a>
+      <nav class="flex gap-6 text-sm font-bold tracking-wide">
+        <a href="index.html" class="nav-link text-slate-400 hover:text-cyan-300">🌐 BERANDA</a>
+        <a href="geosains.html" class="nav-link active text-cyan-400">🛰️ GEOSAINS AI</a>
+        <a href="education.html" class="nav-link text-slate-400 hover:text-cyan-300">🎓 EDTECH CYBER</a>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN HERO SECTION -->
-  <main class="flex-grow max-w-7xl mx-auto px-6 py-16">
+  <!-- MAIN KONTEN -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-10">
+    
+    <!-- HERO SECTION -->
     <div class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
-      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-panel text-cyan-300 text-xs font-bold tracking-widest mb-6 uppercase">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Earth & Geospatial Data Scientist
+      <div class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full glass-card text-cyan-300 text-xs font-mono font-bold tracking-widest mb-6 border-cyan-400/40 shadow-[0_0_20px_rgba(45,212,191,0.4)] light-sweep">
+        <span class="text-lg">🛰️</span> MULTI-HAZARD EARLY WARNING SYSTEM DEVELOPER
       </div>
-      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" id="geo-title">
-        <!-- Injected via JS -->
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-teal-400 text-glow" id="geo-title">
+        <!-- JS Inject -->
       </h2>
-      <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed glass-panel p-6 rounded-2xl border-cyan-500/30" id="geo-about">
-        <!-- Injected via JS -->
-      </p>
-    </div>
-
-    <!-- OPERATIONAL SYSTEMS & IBF PROJECTS -->
-    <div class="mb-20">
-      <div class="flex items-center gap-4 mb-10 fade-in-up">
-        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-cyan-500/50"></div>
-        <h3 class="text-3xl font-bold text-white text-glow">Early Warning Systems & Risk Forecasts</h3>
-        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-cyan-500/50"></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8" id="projects-grid">
-        <!-- Injected via JS -->
+      <div class="glass-card p-6 rounded-2xl border-cyan-500/30 font-light text-slate-300 light-sweep" id="geo-about">
+        <!-- JS Inject -->
       </div>
     </div>
 
-    <!-- TECHNICAL SKILLS & NUMERICAL MODELING -->
-    <div class="mb-20">
-      <div class="flex items-center gap-4 mb-10 fade-in-up">
-        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-cyan-500/50"></div>
-        <h3 class="text-3xl font-bold text-white text-glow">Technical Stack & Modeling Expertise</h3>
-        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-cyan-500/50"></div>
+    <!-- IBF PROJECTS (INTERACTIVE CARDS) -->
+    <div class="mb-24">
+      <div class="text-center mb-12 fade-in-up">
+        <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// OPERATIONAL SYSTEMS</span>
+        <h3 class="text-3xl font-extrabold text-white text-glow mt-1">🌊 Early Warning & Risk Forecasts</h3>
+        <p class="text-xs text-cyan-500/80 mt-2 font-mono hover:text-cyan-300 transition-colors">>> Hover system grid to decrypt operational data <<</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        <!-- JS Inject -->
+      </div>
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="mb-24">
+      <div class="text-center mb-12 fade-in-up">
+        <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// TECH STACK & ENGINE</span>
+        <h3 class="text-3xl font-extrabold text-white text-glow mt-1">⚙️ Technical & Modeling Expertise</h3>
+        <p class="text-xs text-cyan-500/80 mt-2 font-mono hover:text-cyan-300 transition-colors">>> Hover grid to scan competencies <<</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6" id="skills-grid">
-        <!-- Injected via JS -->
+        <!-- JS Inject -->
       </div>
     </div>
 
-    <!-- SCIENTIFIC ACHIEVEMENTS & CONTRIBUTIONS -->
+    <!-- ACHIEVEMENTS -->
     <div class="mb-20">
-      <div class="flex items-center gap-4 mb-10 fade-in-up">
-        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-cyan-500/50"></div>
-        <h3 class="text-3xl font-bold text-white text-glow">Riset, Konferensi & Kontribusi Ilmiah</h3>
-        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-cyan-500/50"></div>
+      <div class="text-center mb-12 fade-in-up">
+        <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase">// SCIENTIFIC MILESTONES</span>
+        <h3 class="text-3xl font-extrabold text-white text-glow mt-1">🔬 Riset & Publikasi Ilmiah</h3>
       </div>
-      <div class="glass-panel p-8 rounded-2xl fade-in-up" id="achievements-card">
-        <!-- Injected via JS -->
+      <div class="max-w-4xl mx-auto" id="achievements-container">
+        <!-- JS Inject -->
       </div>
     </div>
+
   </main>
-
-  <footer class="border-t border-cyan-900/50 mt-10 py-8 text-center text-slate-500 text-sm glass-header">
-    <p>© 2026 Bagus Primohadi. Geospatial AI & Risk Intelligence Systems.</p>
-  </footer>
-
   <script src="geosains.js"></script>
 </body>
 </html>
