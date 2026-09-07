@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="education.css">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-emerald-500 selection:text-black bg-black text-slate-200">
+<body class="min-h-screen flex flex-col selection:bg-emerald-500 selection:text-black bg-black text-slate-200 relative">
 
   <!-- CANVAS RUMUS INTERAKTIF -->
   <canvas id="math-canvas"></canvas>
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <!-- KEAHLIAN & PORTOFOLIO (INTERACTIVE HOVER POPUP CARDS) -->
+    <!-- KEAHLIAN & PORTOFOLIO -->
     <div class="mb-20">
       <div class="text-center mb-12">
         <span class="text-emerald-400 font-mono text-xs font-bold tracking-widest uppercase">// CORE CAPABILITIES</span>
@@ -78,6 +78,30 @@
       <div class="grid md:grid-cols-2 gap-6" id="achievements-grid"></div>
     </div>
   </main>
+
+  <!-- MODAL GLOBAL DI TENGAH LAYAR (1:1 SQUARE) -->
+  <div id="global-modal-overlay" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div id="global-modal-box" class="relative w-full max-w-[550px] aspect-square bg-[#061812]/95 border-2 border-emerald-400 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(16,185,129,0.5)] transform scale-90 transition-transform duration-300 flex flex-col justify-between overflow-hidden">
+      <!-- Header Modal -->
+      <div class="flex justify-between items-center pb-3 border-b border-emerald-500/40">
+        <div class="flex items-center gap-3">
+          <span id="modal-icon" class="text-3xl md:text-4xl">✨</span>
+          <h4 id="modal-title" class="text-lg md:text-xl font-extrabold text-emerald-300 font-mono leading-tight">MODULE TITLE</h4>
+        </div>
+        <span class="text-[10px] text-emerald-400 font-mono px-2 py-1 bg-emerald-950 rounded border border-emerald-500/30 whitespace-nowrap">MODULE DECRYPTED</span>
+      </div>
+      
+      <!-- Isi Konten Modal -->
+      <div class="my-4 flex-grow overflow-y-auto pr-2 custom-scrollbar">
+        <ul id="modal-list" class="space-y-3"></ul>
+      </div>
+
+      <!-- Footer Modal -->
+      <div class="pt-3 border-t border-emerald-500/30 text-right">
+        <span class="text-[11px] text-emerald-400/80 font-mono">Geser kursor keluar kartu untuk menutup ✕</span>
+      </div>
+    </div>
+  </div>
 
   <script src="education.js"></script>
 </body>
