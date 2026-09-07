@@ -1,0 +1,129 @@
+/* --- GLOBAL THEME --- */
+:root {
+  --emerald-neon: #10b981;
+  --emerald-light: #34d399;
+  --bg-dark: #020617; /* Very dark slate */
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-dark);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* --- ANIMATED BACKGROUND (CSS BLOBS) --- */
+.blob-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+.blob-bg::before, .blob-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatBlobs 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.15;
+}
+.blob-bg::before {
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, #10b981, transparent 70%);
+  top: -10%; left: -10%;
+}
+.blob-bg::after {
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, #059669, transparent 70%);
+  bottom: -20%; right: -10%;
+  animation-delay: -10s;
+}
+
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10%, 20%) scale(1.1); }
+  100% { transform: translate(-10%, -10%) scale(0.9); }
+}
+
+/* --- GLASSMORPHISM & NEON EFFECTS --- */
+.glass-header {
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-panel {
+  background: rgba(16, 185, 129, 0.05); /* Subtle emerald tint */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2), inset 0 0 15px rgba(16, 185, 129, 0.1);
+  transform: translateY(-8px);
+}
+
+/* Teks Bercahaya */
+.text-glow {
+  color: var(--emerald-light);
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6), 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Navigasi Aktif */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute; width: 0; height: 2px;
+  bottom: 0; left: 0;
+  background-color: var(--emerald-neon);
+  box-shadow: 0 0 10px var(--emerald-neon);
+  transition: width 0.3s ease-in-out;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Custom Bullet List untuk Skills & Experience */
+.neon-list {
+  list-style: none;
+  padding-left: 0;
+}
+.neon-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.neon-list li::before {
+  content: '▹';
+  position: absolute;
+  left: 0; top: -2px;
+  color: var(--emerald-light);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--emerald-light);
+}
+
+/* Scroll Animation Classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
