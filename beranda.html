@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bagus Primohadi | Multi-Talent Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* BERANDA.CSS - Techno Gradient & Glassmorphism */
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #040d12;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(13, 148, 136, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.1), transparent 25%);
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .glass-panel {
+      background: rgba(13, 148, 136, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(45, 212, 191, 0.5);
+      box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+    }
+    .text-glow {
+      text-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+    }
+    .nav-link.active {
+      color: #2dd4bf;
+      border-bottom: 2px solid #2dd4bf;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="sticky top-0 z-50 glass-panel border-b-0 border-teal-900/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">⚡</span>
+        <h1 class="text-xl font-bold tracking-wider text-teal-400 text-glow" id="nav-name">BAGUS PRIMOHADI</h1>
+      </div>
+      <nav class="flex gap-6 text-sm font-semibold tracking-wide text-slate-400">
+        <a href="beranda.html" class="nav-link active hover:text-teal-300 transition-colors">🌐 BERANDA</a>
+        <a href="geosains.html" class="nav-link hover:text-teal-300 transition-colors">🛰️ GEOSAINS AI</a>
+        <a href="education.html" class="nav-link hover:text-teal-300 transition-colors">🎓 EDTECH</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN HERO SECTION -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-teal-300 text-xs font-bold tracking-widest mb-6 uppercase" id="hero-taglines">
+        <!-- Injected via JS -->
+      </div>
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+        Multi-Talent <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-300 to-teal-500 text-glow">
+          Professional Hub
+        </span>
+      </h2>
+      <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed" id="hero-desc">
+        <!-- Injected via JS -->
+      </p>
+
+      <!-- SOCIAL/VALIDATION LINKS -->
+      <div class="flex flex-wrap justify-center gap-4" id="validation-links">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- METRICS GRID -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20" id="stats-grid">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- DUAL CORE NAVIGATION CARDS -->
+    <div class="grid md:grid-cols-2 gap-8 mb-20">
+      <!-- Geosains Card -->
+      <a href="geosains.html" class="group glass-panel rounded-2xl p-10 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute -right-10 -top-10 text-9xl opacity-5 group-hover:opacity-20 transition-opacity">🛰️</div>
+        <div class="text-5xl mb-6">🌍</div>
+        <h3 class="text-2xl font-bold text-teal-400 mb-3">Earth Data & AI Systems</h3>
+        <p class="text-slate-400 mb-6">Portofolio InaFLEWS, IBF WebGIS, model numerik cuaca, dan sistem peringatan dini kebencanaan.</p>
+        <div class="text-teal-300 text-sm font-bold flex items-center gap-2">
+          Eksplorasi Karya Geosains <span>→</span>
+        </div>
+      </a>
+
+      <!-- EdTech Card -->
+      <a href="education.html" class="group glass-panel rounded-2xl p-10 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute -right-10 -top-10 text-9xl opacity-5 group-hover:opacity-20 transition-opacity">🎓</div>
+        <div class="text-5xl mb-6">🚀</div>
+        <h3 class="text-2xl font-bold text-emerald-400 mb-3">EdTech & Science Education</h3>
+        <p class="text-slate-400 mb-6">Portofolio kurikulum HOTS, pembinaan OSN, platform KelasBisa, dan sistem CBT ujian digital.</p>
+        <div class="text-emerald-300 text-sm font-bold flex items-center gap-2">
+          Eksplorasi Karya Edukasi <span>→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- LIVE PLATFORMS SECTION -->
+    <div class="text-center mb-10">
+      <h3 class="text-3xl font-bold text-white mb-2">Live Ecosystem <span class="text-teal-400">Platforms</span></h3>
+      <p class="text-slate-400">Akses langsung ke sistem operasional dan platform edukasi.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="platforms-grid">
+      <!-- Injected via JS -->
+    </div>
+  </main>
+
+  <footer class="border-t border-teal-900/50 mt-10 py-8 text-center text-slate-500 text-sm">
+    <p>© 2026 Bagus Primohadi. Crafted with Techno Vibe.</p>
+  </footer>
+
+  <!-- BERANDA.JS -->
+  <script>
+    // Fetch data dari general.json
+    fetch('general.json')
+      .then(response => response.json())
+      .then(data => {
+        
+        // 1. Set Profile Info
+        document.getElementById('hero-taglines').innerHTML = `
+          <span>${data.profile.tagline_primary}</span>
+        `;
+        document.getElementById('hero-desc').textContent = data.profile.description;
+
+        // 2. Render Validation Links (Auth Buttons)
+        const linksContainer = document.getElementById('validation-links');
+        Object.values(data.validation_links).forEach(link => {
+          const btn = document.createElement('a');
+          btn.href = link.url;
+          btn.target = "_blank";
+          btn.className = "flex items-center gap-2 px-5 py-3 glass-panel rounded-xl font-bold text-sm text-slate-300 hover:text-white transition-all";
+          btn.innerHTML = `<span class="text-lg">${link.icon}</span> ${link.title}`;
+          linksContainer.appendChild(btn);
+        });
+
+        // 3. Render Quick Stats
+        const statsGrid = document.getElementById('stats-grid');
+        data.quick_stats.forEach(stat => {
+          const div = document.createElement('div');
+          div.className = "glass-panel rounded-xl p-6 text-center";
+          div.innerHTML = `
+            <div class="text-3xl mb-2">${stat.icon}</div>
+            <div class="text-3xl font-extrabold text-teal-400">${stat.value}</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">${stat.label}</div>
+          `;
+          statsGrid.appendChild(div);
+        });
+
+        // 4. Render Live Platforms
+        const platformsGrid = document.getElementById('platforms-grid');
+        data.live_platforms.forEach(plat => {
+          const card = document.createElement('div');
+          card.className = "glass-panel rounded-xl p-6 flex flex-col justify-between hover:border-teal-400 transition-colors";
+          card.innerHTML = `
+            <div>
+              <div class="text-4xl mb-4">${plat.icon}</div>
+              <div class="text-[10px] text-teal-500 font-bold uppercase tracking-widest mb-1">${plat.category}</div>
+              <h4 class="text-lg font-bold text-white mb-2">${plat.name}</h4>
+              <p class="text-sm text-slate-400 mb-6">${plat.description}</p>
+            </div>
+            <a href="${plat.url}" target="_blank" class="w-full py-2 bg-teal-900/30 hover:bg-teal-800/50 text-teal-300 text-xs font-bold rounded-lg text-center transition-colors border border-teal-800/50">
+              Visit Platform ↗
+            </a>
+          `;
+          platformsGrid.appendChild(card);
+        });
+
+      })
+      .catch(error => console.error('Error loading general.json:', error));
+  </script>
+</body>
+</html>
