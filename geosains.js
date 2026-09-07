@@ -1,45 +1,67 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Jalankan animasi canvas di background
     initDataScienceCanvas();
 
+    // Fetch data JSON
     fetch('geosains.json')
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+        })
         .then(data => {
-            const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
+            // Helper pembersih string yang aman (mencegah error jika data sanitasinya beda)
+            const cleanText = (str) => {
+                if (typeof str !== 'string') return str || '';
+                return str.replace(/\/g, '').trim();
+            };
 
-            // Header & About
-            document.getElementById('geo-title').textContent = cleanText(data.header.title);
-            document.getElementById('geo-about').innerHTML = `
-                <div class="flex justify-center items-center gap-3 mb-2">
-                    <span class="animate-pulse text-cyan-300 text-lg">📡</span>
-                    <span class="text-cyan-300 font-mono text-sm tracking-widest uppercase font-bold">${cleanText(data.header.lokasi)}</span>
-                </div>
-                <p class="text-base md:text-lg leading-relaxed text-slate-100 font-medium drop-shadow-md">${cleanText(data.about_me)}</p>
-            `;
+            // 1. Header Title & About Me
+            if (data.header) {
+                const geoTitle = document.getElementById('geo-title');
+                if (geoTitle) geoTitle.textContent = cleanText(data.header.title);
 
-            // 1. Render Projects
-            renderProjectCards('projects-grid', data.project_experience.projects);
+                const geoAbout = document.getElementById('geo-about');
+                if (geoAbout) {
+                    geoAbout.innerHTML = `
+                        <div class="flex justify-center items-center gap-3 mb-2">
+                            <span class="animate-pulse text-cyan-300 text-lg">📡</span>
+                            <span class="text-cyan-300 font-mono text-sm tracking-widest uppercase font-bold">${cleanText(data.header.lokasi)}</span>
+                        </div>
+                        <p class="text-base md:text-lg leading-relaxed text-slate-100 font-medium drop-shadow-md">${cleanText(data.about_me)}</p>
+                    `;
+                }
+            }
 
-            // 2. Render Skills
-            renderHoverCards('skills-grid', data.technical_skills, {
-                "geospatial_remote_sensing": "🌍",
-                "programming_data_science": "💻",
-                "numerical_modeling": "🌊"
-            });
+            // 2. Render Projects (Early Warning Systems)
+            if (data.project_experience && Array.isArray(data.project_experience.projects)) {
+                renderProjectCards('projects-grid', data.project_experience.projects, cleanText);
+            }
 
-            // 3. Render Achievements
-            renderAchievementsCard('achievements-container', data.achievements_scientific_contribution);
+            // 3. Render Technical Skills
+            if (data.technical_skills) {
+                renderHoverCards('skills-grid', data.technical_skills, {
+                    "geospatial_remote_sensing": "🌍",
+                    "programming_data_science": "💻",
+                    "numerical_modeling": "🌊"
+                }, cleanText);
+            }
 
+            // 4. Render Achievements
+            if (data.achievements_scientific_contribution) {
+                renderAchievementsCard('achievements-container', data.achievements_scientific_contribution, cleanText);
+            }
+
+            // Inisialisasi efek animasi scroll & 3D tilt
             setupScrollAnimation();
             setup3DTiltEffect();
         })
-        .catch(err => console.error("Data error:", err));
+        .catch(err => console.error("Error loading geosains.json:", err));
 });
 
-// BUILD PROJECT CARDS (TEKS LANGSUNG TERLIHAT & HOVER OVERLAY GLOW)
-function renderProjectCards(containerId, projects) {
+// RENDER PROJECT CARDS
+function renderProjectCards(containerId, projects, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
 
     const projIcons = ["🌩️", "🌊", "☀️", "🌪️", "🏖️", "🌀"];
 
@@ -47,7 +69,14 @@ function renderProjectCards(containerId, projects) {
         const title = cleanText(proj.nama);
         const icon = projIcons[idx % projIcons.length];
         const role = proj.role ? cleanText(proj.role) : 'IBF System Model';
-        const listHtml = proj.details.map(d => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-bold">▹</span><span class="text-xs md:text-sm text-slate-200">${cleanText(d)}</span></li>`).join('');
+        
+        const detailsArray = Array.isArray(proj.details) ? proj.details : [];
+        const listHtml = detailsArray.map(d => `
+            <li class="flex gap-2 items-start">
+                <span class="text-cyan-400 font-bold">▹</span>
+                <span class="text-xs md:text-sm text-slate-200">${cleanText(d)}</span>
+            </li>
+        `).join('');
         
         let docLink = proj.portofolio_documentation ? 
             `<a href="${cleanText(proj.portofolio_documentation)}" target="_blank" class="mt-4 inline-flex items-center justify-center w-full py-2.5 bg-cyan-950/80 hover:bg-cyan-800/90 text-cyan-300 border border-cyan-500/50 rounded-lg text-[11px] font-bold font-mono tracking-wider transition-colors z-30 relative pointer-events-auto">
@@ -74,16 +103,22 @@ function renderProjectCards(containerId, projects) {
     });
 }
 
-// BUILD SKILLS CARDS
-function renderHoverCards(containerId, dataset, iconMap) {
+// RENDER SKILLS CARDS
+function renderHoverCards(containerId, dataset, iconMap, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
 
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
         const icon = iconMap[key] || "✨";
-        const listHtml = items.map(i => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-bold">▹</span><span class="text-xs md:text-sm text-slate-200">${cleanText(i)}</span></li>`).join('');
+        
+        const itemsArray = Array.isArray(items) ? items : [];
+        const listHtml = itemsArray.map(i => `
+            <li class="flex gap-2 items-start">
+                <span class="text-cyan-400 font-bold">▹</span>
+                <span class="text-xs md:text-sm text-slate-200">${cleanText(i)}</span>
+            </li>
+        `).join('');
 
         const card = document.createElement('div');
         card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl fade-in-up flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
@@ -103,13 +138,18 @@ function renderHoverCards(containerId, dataset, iconMap) {
     }
 }
 
-// ACHIEVEMENTS RENDER
-function renderAchievementsCard(containerId, achData) {
+// RENDER ACHIEVEMENTS CARD
+function renderAchievementsCard(containerId, achData, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
 
-    let achList = achData.selected_achievements.map(a => `<li class="flex gap-2 items-start"><span class="text-cyan-400 font-extrabold text-base">»</span><span class="text-xs md:text-sm font-mono text-slate-200">${cleanText(a)}</span></li>`).join('');
+    const achievementsArray = Array.isArray(achData.selected_achievements) ? achData.selected_achievements : [];
+    let achList = achievementsArray.map(a => `
+        <li class="flex gap-2 items-start">
+            <span class="text-cyan-400 font-extrabold text-base">»</span>
+            <span class="text-xs md:text-sm font-mono text-slate-200">${cleanText(a)}</span>
+        </li>
+    `).join('');
 
     container.innerHTML = `
         <div class="glass-card light-sweep tilt-element p-8 md:p-10 rounded-3xl fade-in-up border border-cyan-400/50 cursor-default">
@@ -126,7 +166,7 @@ function renderAchievementsCard(containerId, achData) {
     `;
 }
 
-// 3D TILT EFFECT & ZOOM HOVER
+// EFEK TILT 3D
 function setup3DTiltEffect() {
     document.querySelectorAll('.tilt-element').forEach(el => {
         el.addEventListener('mousemove', e => {
@@ -148,7 +188,7 @@ function setup3DTiltEffect() {
     });
 }
 
-// DATA SCIENCE CANVAS (ANIMASI KODE PYTHON HIJAU NEON - LEBIH SEDIKIT & KECIL)
+// CANVAS KODE PYTHON (Sesuai Konfigurasi 40 Kode Ukuran Kecil)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
@@ -190,13 +230,12 @@ function initDataScienceCanvas() {
         "while True: stream_meteorological_telemetry()"
     ];
 
-    // JUMLAH DIUBAH MENJADI 40 ELEMEN & UKURAN FONT DIPERKEOCIL (9px - 11px)
     const codes = Array.from({ length: 40 }, () => ({
         text: scripts[Math.floor(Math.random() * scripts.length)],
         x: Math.random() * width,
         y: Math.random() * height,
         speed: Math.random() * 1.8 + 0.6,
-        fontSize: Math.floor(Math.random() * 3) + 9, // Ukuran font 9px - 11px
+        fontSize: Math.floor(Math.random() * 3) + 9,
         opacity: Math.random() * 0.35 + 0.4
     }));
 
@@ -271,4 +310,12 @@ function initDataScienceCanvas() {
         requestAnimationFrame(animate);
     }
     animate();
+}
+
+// ANIMASI SCROLL OBSERVATION
+function setupScrollAnimation() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 }
