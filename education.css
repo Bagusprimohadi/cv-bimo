@@ -57,16 +57,19 @@ body {
 /* MODAL GLOBAL OVERLAY STYLING */
 #global-modal-overlay {
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none; /* Mencegah modal merebut fokus kursor dari kartu */
+  transition: opacity 0.25s ease-in-out;
 }
 
 #global-modal-overlay #global-modal-box {
   transform: scale(0.85);
+  pointer-events: none; /* Kursor tembus sehingga tidak memicu flicker/blip */
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Saat aktif, overlay cukup tampil visual tanpa mengganggu hover kartu */
 #global-modal-overlay.active {
   opacity: 1 !important;
-  pointer-events: auto !important;
 }
 
 #global-modal-overlay.active #global-modal-box {
