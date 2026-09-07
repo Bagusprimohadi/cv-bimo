@@ -2,7 +2,7 @@
 :root {
   --cyan-neon: #2dd4bf;
   --blue-neon: #38bdf8;
-  --bg-black: #020617;
+  --bg-black: #010308;
 }
 
 body {
@@ -20,44 +20,45 @@ body {
   pointer-events: none;
 }
 
+/* GRADASI BACKGROUND: Cerah di tengah, gelap pekat di ujung */
 .cyber-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
-  background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.05), #000000 85%);
+  background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.2) 0%, rgba(1, 3, 8, 1) 90%);
   z-index: 1;
   pointer-events: none;
 }
 
 /* GLASSMORPHISM & NEON GLOW */
 .glass-header {
-  background: rgba(2, 6, 23, 0.85);
+  background: rgba(1, 3, 8, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* The Box Card itself with the NEON BACKGLOW */
+/* KARTU DEFAULT */
 .glass-card {
-  background: rgba(14, 165, 233, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(45, 212, 191, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  background: rgba(14, 165, 233, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform, box-shadow;
 }
 
-/* ON HOVER: Neon Glow Behind the Card */
+/* EFEK ZOOM & GLOW SAAT KURSOR MENDEKAT */
 .glass-card:hover {
-  border-color: var(--cyan-neon);
-  /* This creates the intense neon glow BEHIND the box */
-  box-shadow: 0 0 40px rgba(45, 212, 191, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.15);
-  z-index: 20;
+  border-color: #67e8f9;
+  box-shadow: 0 0 50px rgba(45, 212, 191, 0.7), inset 0 0 20px rgba(56, 189, 248, 0.3);
+  z-index: 50; /* Pastikan kartu yang di-hover menumpuk di atas yang lain */
 }
 
 .text-glow {
-  text-shadow: 0 0 15px rgba(45, 212, 191, 0.6), 0 0 30px rgba(56, 189, 248, 0.3);
+  text-shadow: 0 0 15px rgba(45, 212, 191, 0.8), 0 0 30px rgba(56, 189, 248, 0.5);
 }
 
 /* LIGHT SWEEP EFFECT */
@@ -66,7 +67,7 @@ body {
   position: absolute;
   top: 0; left: -150%;
   width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.6), transparent);
   transform: skewX(-25deg);
   animation: sweep 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
