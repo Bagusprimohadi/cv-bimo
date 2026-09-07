@@ -4,14 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('education.json')
         .then(res => res.json())
         .then(data => {
+            // Helper pembersih string tanpa regex yang merusak
+            const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
+
             // Header
-            document.getElementById('edu-title').textContent = data.header.title.replace(/\/g, '');
+            document.getElementById('edu-title').textContent = cleanText(data.header.title);
             document.getElementById('edu-summary').innerHTML = `
                 <div class="flex justify-center items-center gap-3 mb-2">
                     <span class="animate-pulse text-emerald-400">📡</span>
-                    <span class="text-emerald-400 font-mono text-sm tracking-widest uppercase">${data.header.lokasi.replace(/\/g, '')}</span>
+                    <span class="text-emerald-400 font-mono text-sm tracking-widest uppercase">${cleanText(data.header.lokasi)}</span>
                 </div>
-                <p class="text-sm md:text-base leading-relaxed">${data.ringkasan_profil.replace(/\/g, '')}</p>
+                <p class="text-sm md:text-base leading-relaxed">${cleanText(data.ringkasan_profil)}</p>
             `;
 
             // Setup Data Render
@@ -43,11 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // BUILD HOVER SILHOUETTE CARDS
 function renderHoverCards(containerId, dataset, iconMap, heightClass) {
     const container = document.getElementById(containerId);
+    if (!container) return;
     
+    const cleanText = (str) => typeof str === 'string' ? str.split('[cite')[0] : str;
+
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
         const icon = iconMap[key] || "✨";
-        const listHtml = items.map(i => `<li class="flex gap-2 items-start"><span class="text-emerald-400">▹</span><span>${i.replace(/\/g, '')}</span></li>`).join('');
+        const listHtml = items.map(i => `<li class="flex gap-2 items-start"><span class="text-emerald-400">▹</span><span>${cleanText(i)}</span></li>`).join('');
 
         const card = document.createElement('div');
         card.className = `glass-card light-sweep tilt-element group p-6 ${heightClass} flex flex-col items-center justify-center text-center cursor-pointer rounded-2xl fade-in-up`;
@@ -64,7 +70,7 @@ function renderHoverCards(containerId, dataset, iconMap, heightClass) {
             <div class="absolute inset-0 bg-black/90 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 p-6 flex flex-col text-left overflow-y-auto z-10 border border-emerald-400 rounded-2xl">
                 <div class="sticky top-0 bg-black/90 pb-2 mb-3 border-b border-emerald-500/30">
                     <h4 class="text-emerald-300 font-bold font-mono text-sm flex items-center gap-2">
-                        <span class="animate-spin-slow">⚙️</span> SYSTEM DECRYPT: ${title}
+                        <span>⚙️</span> SYSTEM DECRYPT: ${title}
                     </h4>
                 </div>
                 <ul class="text-xs space-y-3 text-slate-300 font-mono">
@@ -100,6 +106,7 @@ function setup3DTiltEffect() {
 // MATH CANVAS INTERAKTIF
 function initMathFormulaCanvas() {
     const canvas = document.getElementById('math-canvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
 
@@ -121,8 +128,7 @@ function initMathFormulaCanvas() {
     resize();
 
     const formulas = [
-        "E=mc²", "∇×E=-∂B/∂t", "f(x)=σ(W^T x+b)", "PV=nRT", "∫e^-x²dx=√π", 
-        "L=-∑ylog(ŷ)", "Ri=(g/θ)(∂θ/∂z)/(∂u/∂z)²", "z=(x-μ)/σ", "∇·V=0", 
+        "E=mc²", "PV=nRT", "∫e^-x²dx=√π", "z=(x-μ)/σ", "∇·V=0", 
         "e^iπ+1=0", "WBGT=0.7Tw+0.2Tg+0.1Td", "Q=m·c·ΔT", "Bloom's Taxonomy", "UbD Framework"
     ];
 
@@ -131,7 +137,6 @@ function initMathFormulaCanvas() {
         x: Math.random() * width,
         y: Math.random() * height,
         size: Math.random() * 8 + 10,
-        baseX: 0, baseY: 0,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5 - 0.5,
         opacity: Math.random() * 0.4 + 0.1
@@ -148,7 +153,6 @@ function initMathFormulaCanvas() {
             if (p.x < -50) p.x = width + 50;
             if (p.x > width + 50) p.x = -50;
 
-            // Efek tolak kursor (Repel)
             if (mouse.x != null) {
                 let dx = mouse.x - p.x;
                 let dy = mouse.y - p.y;
