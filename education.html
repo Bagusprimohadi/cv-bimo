@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EdTech & Science Education | Bagus Primohadi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="education.css">
+</head>
+<body class="min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+  <!-- BACKGROUND ANIMATED BLOBS (CSS Only) -->
+  <div class="blob-bg"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="sticky top-0 z-50 glass-header border-b border-emerald-900/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🎓</span>
+        <h1 class="text-xl font-bold tracking-wider text-emerald-400 text-glow" id="nav-name">EDTECH HUB</h1>
+      </div>
+      <nav class="flex gap-6 text-sm font-semibold tracking-wide text-slate-400">
+        <a href="beranda.html" class="nav-link hover:text-emerald-300 transition-colors">🌐 BERANDA</a>
+        <a href="geosains.html" class="nav-link hover:text-emerald-300 transition-colors">🛰️ GEOSAINS AI</a>
+        <a href="education.html" class="nav-link active hover:text-emerald-300 transition-colors">🎓 EDTECH</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN HERO SECTION -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center max-w-4xl mx-auto mb-20 fade-in-up">
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-panel text-emerald-300 text-xs font-bold tracking-widest mb-6 uppercase">
+        🚀 Curriculum Specialist & Educator
+      </div>
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" id="edu-title">
+        <!-- Injected via JS -->
+      </h2>
+      <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed glass-panel p-6 rounded-2xl" id="edu-summary">
+        <!-- Injected via JS -->
+      </p>
+    </div>
+
+    <!-- KEAHLIAN UTAMA (SKILLS GRID) -->
+    <div class="mb-20">
+      <div class="flex items-center gap-4 mb-10 fade-in-up">
+        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-emerald-500/50"></div>
+        <h3 class="text-3xl font-bold text-white text-glow">Keahlian Utama Pendidikan</h3>
+        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-emerald-500/50"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8" id="skills-grid">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- PENGALAMAN KERJA (EXPERIENCE) -->
+    <div class="mb-20">
+      <div class="flex items-center gap-4 mb-10 fade-in-up">
+        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-emerald-500/50"></div>
+        <h3 class="text-3xl font-bold text-white text-glow">Portofolio Pedagogi & Pengalaman</h3>
+        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-emerald-500/50"></div>
+      </div>
+      <div class="space-y-6" id="experience-container">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- PRESTASI (ACHIEVEMENTS) -->
+    <div class="mb-20">
+      <div class="flex items-center gap-4 mb-10 fade-in-up">
+        <div class="h-[2px] flex-grow bg-gradient-to-r from-transparent to-emerald-500/50"></div>
+        <h3 class="text-3xl font-bold text-white text-glow">Prestasi Akademik</h3>
+        <div class="h-[2px] flex-grow bg-gradient-to-l from-transparent to-emerald-500/50"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8" id="achievements-container">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-emerald-900/50 mt-10 py-8 text-center text-slate-500 text-sm glass-header">
+    <p>© 2026 Bagus Primohadi. EdTech Ecosystem Hub.</p>
+  </footer>
+
+  <script src="education.js"></script>
+</body>
+</html>
