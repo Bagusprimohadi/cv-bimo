@@ -54,14 +54,23 @@ body {
   text-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.2);
 }
 
-/* MODAL GLOBAL STYLING */
+/* MODAL GLOBAL OVERLAY STYLING */
+#global-modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#global-modal-overlay #global-modal-box {
+  transform: scale(0.85);
+}
+
 #global-modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 #global-modal-overlay.active #global-modal-box {
-  transform: scale(1);
+  transform: scale(1) !important;
 }
 
 /* CUSTOM SCROLLBAR UNTUK MODAL */
