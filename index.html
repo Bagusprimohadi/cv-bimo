@@ -6,37 +6,8 @@
   <title>Bagus Primohadi | Multi-Talent Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    /* BERANDA.CSS - Techno Gradient & Glassmorphism */
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background-color: #040d12;
-      background-image: 
-        radial-gradient(circle at 15% 50%, rgba(13, 148, 136, 0.15), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.1), transparent 25%);
-      color: #e2e8f0;
-      overflow-x: hidden;
-    }
-    .glass-panel {
-      background: rgba(13, 148, 136, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(20, 184, 166, 0.2);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    }
-    .glass-panel:hover {
-      border-color: rgba(45, 212, 191, 0.5);
-      box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
-    }
-    .text-glow {
-      text-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
-    }
-    .nav-link.active {
-      color: #2dd4bf;
-      border-bottom: 2px solid #2dd4bf;
-    }
-  </style>
+  <!-- Hubungkan ke file CSS eksternal -->
+  <link rel="stylesheet" href="beranda.css">
 </head>
 <body class="min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
 
@@ -48,7 +19,7 @@
         <h1 class="text-xl font-bold tracking-wider text-teal-400 text-glow" id="nav-name">BAGUS PRIMOHADI</h1>
       </div>
       <nav class="flex gap-6 text-sm font-semibold tracking-wide text-slate-400">
-        <a href="beranda.html" class="nav-link active hover:text-teal-300 transition-colors">🌐 BERANDA</a>
+        <a href="index.html" class="nav-link active hover:text-teal-300 transition-colors">🌐 BERANDA</a>
         <a href="geosains.html" class="nav-link hover:text-teal-300 transition-colors">🛰️ GEOSAINS AI</a>
         <a href="education.html" class="nav-link hover:text-teal-300 transition-colors">🎓 EDTECH</a>
       </nav>
@@ -121,64 +92,7 @@
     <p>© 2026 Bagus Primohadi. Crafted with Techno Vibe.</p>
   </footer>
 
-  <!-- BERANDA.JS -->
-  <script>
-    // Fetch data dari general.json
-    fetch('general.json')
-      .then(response => response.json())
-      .then(data => {
-        
-        // 1. Set Profile Info
-        document.getElementById('hero-taglines').innerHTML = `
-          <span>${data.profile.tagline_primary}</span>
-        `;
-        document.getElementById('hero-desc').textContent = data.profile.description;
-
-        // 2. Render Validation Links (Auth Buttons)
-        const linksContainer = document.getElementById('validation-links');
-        Object.values(data.validation_links).forEach(link => {
-          const btn = document.createElement('a');
-          btn.href = link.url;
-          btn.target = "_blank";
-          btn.className = "flex items-center gap-2 px-5 py-3 glass-panel rounded-xl font-bold text-sm text-slate-300 hover:text-white transition-all";
-          btn.innerHTML = `<span class="text-lg">${link.icon}</span> ${link.title}`;
-          linksContainer.appendChild(btn);
-        });
-
-        // 3. Render Quick Stats
-        const statsGrid = document.getElementById('stats-grid');
-        data.quick_stats.forEach(stat => {
-          const div = document.createElement('div');
-          div.className = "glass-panel rounded-xl p-6 text-center";
-          div.innerHTML = `
-            <div class="text-3xl mb-2">${stat.icon}</div>
-            <div class="text-3xl font-extrabold text-teal-400">${stat.value}</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">${stat.label}</div>
-          `;
-          statsGrid.appendChild(div);
-        });
-
-        // 4. Render Live Platforms
-        const platformsGrid = document.getElementById('platforms-grid');
-        data.live_platforms.forEach(plat => {
-          const card = document.createElement('div');
-          card.className = "glass-panel rounded-xl p-6 flex flex-col justify-between hover:border-teal-400 transition-colors";
-          card.innerHTML = `
-            <div>
-              <div class="text-4xl mb-4">${plat.icon}</div>
-              <div class="text-[10px] text-teal-500 font-bold uppercase tracking-widest mb-1">${plat.category}</div>
-              <h4 class="text-lg font-bold text-white mb-2">${plat.name}</h4>
-              <p class="text-sm text-slate-400 mb-6">${plat.description}</p>
-            </div>
-            <a href="${plat.url}" target="_blank" class="w-full py-2 bg-teal-900/30 hover:bg-teal-800/50 text-teal-300 text-xs font-bold rounded-lg text-center transition-colors border border-teal-800/50">
-              Visit Platform ↗
-            </a>
-          `;
-          platformsGrid.appendChild(card);
-        });
-
-      })
-      .catch(error => console.error('Error loading general.json:', error));
-  </script>
+  <!-- Hubungkan ke file JavaScript eksternal -->
+  <script src="beranda.js"></script>
 </body>
 </html>
