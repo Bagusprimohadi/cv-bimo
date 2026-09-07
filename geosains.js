@@ -167,7 +167,8 @@ function setup3DTiltEffect() {
     });
 }
 
-// DATA SCIENCE CANVAS (KODE PYTHON SANGAT PADAT & BERCAHAYA TERANG)
+
+// DATA SCIENCE CANVAS (KODE PYTHON SCROLLING HIJAU NEON)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
@@ -187,14 +188,11 @@ function initDataScienceCanvas() {
 
     // BANK KODE PYTHON DATA SCIENCE, AI, REMOTE SENSING & GEOSAINS
     const scripts = [
-        // Data Processing & Geospatial (Xarray, GeoPandas, Rasterio, GEE)
         "import xarray as xr", "import geopandas as gpd", "import rasterio as rio",
         "ds = xr.open_dataset('inaflews_rain.nc')", "gdf = gpd.read_file('sulsel_boundary.geojson')",
         "ee.Initialize()", "image = ee.ImageCollection('COPERNICUS/S2_SR')",
         "ndvi = (nir - red) / (nir + red)", "ds_resampled = ds.resample(time='1D').mean()",
         "gdf.to_crs(epsg=4326, inplace=True)", "grid_z = griddata(points, values, (grid_x, grid_y))",
-        
-        // Machine Learning & Computer Vision (Scikit-learn, OpenCV, PyTorch, TF)
         "import tensorflow as tf", "from sklearn.ensemble import RandomForestRegressor",
         "import cv2", "gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)",
         "model = Sequential([Conv2D(32, (3,3)), MaxPooling2D()])",
@@ -202,14 +200,10 @@ function initDataScienceCanvas() {
         "model.fit(X_train, y_train, epochs=50, batch_size=32)",
         "y_pred = model.predict(X_test)", "rmse = np.sqrt(mean_squared_error(y_test, y_pred))",
         "edges = cv2.Canny(image, threshold1=100, threshold2=200)",
-        
-        // Numerical Modeling & Atmospheric Science (WRF, Wavelet, FFT)
         "def calc_wbgt(temp, humidity, wind_speed):", "def heat_index(T, RH):",
         "fft_spectrum = np.fft.fft2(satellite_band)", "wavelet, freqs = pywt.cwt(signal, scales)",
         "wrf_ds = wrf.getvar(ncfile, 'dbz', timeidx=-1)", "hec_ras_flow = pd.read_csv('hydro.csv')",
         "kalman_filter.update(measurement=obs_radar)", "rho_air = 1.225 # kg/m3",
-        
-        // General Data Science Stack (NumPy, Pandas, Plotly, SQL)
         "import numpy as np", "import pandas as pd", "import matplotlib.pyplot as plt",
         "df = pd.DataFrame(data=sensor_logs)", "df.dropna().groupby('station_id').mean()",
         "SELECT latitude, longitude, hazard_level FROM ibf_warning_db",
@@ -217,17 +211,15 @@ function initDataScienceCanvas() {
         "while True: stream_meteorological_telemetry()"
     ];
 
-    // JUMLAH SCRIPTS DITAMBAHKAN MENJADI 120 ELEMEN (SANGAT PADAT)
     const codes = Array.from({ length: 120 }, () => ({
         text: scripts[Math.floor(Math.random() * scripts.length)],
         x: Math.random() * width,
         y: Math.random() * height,
-        speed: Math.random() * 2.2 + 0.9, // Bergerak cepat ke atas
-        fontSize: Math.floor(Math.random() * 4) + 13, // Ukuran font bervariasi (13px - 16px)
-        opacity: Math.random() * 0.45 + 0.55 // Opacity terang (0.55 hingga 1.0)
+        speed: Math.random() * 2.2 + 0.9,
+        fontSize: Math.floor(Math.random() * 4) + 7,
+        opacity: Math.random() * 0.35 + 0.35
     }));
 
-    // BINTANG/NODE JARINGAN DATA
     const nodes = Array.from({ length: 70 }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -239,9 +231,9 @@ function initDataScienceCanvas() {
     function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        // 1. DOKUMEN PYTHON MATRIX SCROLLING (SANGAT PADAT & BERCAHAYA TERANG)
+        // 1. DOKUMEN PYTHON MATRIX SCROLLING (WARNA HIJAU NEON)
         codes.forEach(c => {
-            c.y -= c.speed; // Bergerak dari bawah ke atas
+            c.y -= c.speed;
             if (c.y < -30) {
                 c.y = height + 30;
                 c.x = Math.random() * width;
@@ -249,14 +241,17 @@ function initDataScienceCanvas() {
             }
 
             ctx.font = `bold ${c.fontSize}px 'Fira Code', monospace`;
-            ctx.fillStyle = `rgba(103, 232, 249, ${c.opacity})`;
+            
+            // --- WARNA HIJAU NEON MATRIX ---
+            ctx.fillStyle = `rgba(52, 211, 153, ${c.opacity})`;
             ctx.shadowBlur = 12;
-            ctx.shadowColor = '#22d3ee'; // Efek Glow Cyan Terang
+            ctx.shadowColor = '#10b981'; // Glow Hijau Neon
+            
             ctx.fillText(c.text, c.x, c.y);
-            ctx.shadowBlur = 0; // Reset blur agar tidak memperlambat canvas
+            ctx.shadowBlur = 0;
         });
 
-        // 2. JARINGAN DATA NODES (DATA SCIENCE NEURAL NETWORK)
+        // 2. JARINGAN DATA NODES
         nodes.forEach((n, i) => {
             n.x += n.vx;
             n.y += n.vy;
@@ -264,7 +259,6 @@ function initDataScienceCanvas() {
             if (n.x < 0 || n.x > width) n.vx *= -1;
             if (n.y < 0 || n.y > height) n.vy *= -1;
 
-            // Efek Tolak Kursor Mouse
             if (mouse.x != null) {
                 let dx = mouse.x - n.x;
                 let dy = mouse.y - n.y;
@@ -277,20 +271,19 @@ function initDataScienceCanvas() {
 
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(45, 212, 191, 0.9)";
+            ctx.fillStyle = "rgba(16, 185, 129, 0.9)";
             ctx.shadowBlur = 6;
-            ctx.shadowColor = '#2dd4bf';
+            ctx.shadowColor = '#10b981';
             ctx.fill();
             ctx.shadowBlur = 0;
 
-            // Garis penghubung antar node data
             for (let j = i + 1; j < nodes.length; j++) {
                 let dx = n.x - nodes[j].x;
                 let dy = n.y - nodes[j].y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < 130) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(45, 212, 191, ${0.45 - dist / 300})`;
+                    ctx.strokeStyle = `rgba(16, 185, 129, ${0.45 - dist / 300})`;
                     ctx.lineWidth = 0.9;
                     ctx.moveTo(n.x, n.y);
                     ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -302,11 +295,4 @@ function initDataScienceCanvas() {
         requestAnimationFrame(animate);
     }
     animate();
-}
-
-function setupScrollAnimation() {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 }
