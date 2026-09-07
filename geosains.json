@@ -1,0 +1,113 @@
+{
+  "header": {
+    "nama": "BAGUS PRIMOHADI SYAHPUTRA",
+    "title": "Earth & Geospatial Data Scientist | AI-Based Early Warning System Developer",
+    "kontak": "+62822-6811-8842 | bagus.primohadi14@gmail.com",
+    "lokasi": "Makassar, Indonesia"
+  },
+  "about_me": "Earth & Geospatial Data Scientist serving as a lead researcher and primary developer of an Al-driven multi-hazard early warning system integrated with Impact-Based Forecasting (IBF). Experienced in integrating big geospatial data, remote sensing, and earth system numerical models to generate risk-based predictions (hazard-exposure-vulnerability) at a national scale. The developed system has been adopted by BMKG and serves as an operational reference for Disaster Management Agency Sulawesi Selatan, as well as cross-sector stakeholders including local governments and Millitary. It has been implemented in South Sulawesi, Central Java, and Southwest Papua, with ongoing expansion toward Eastern Indonesia. Focused on transforming complex, multi-source data into actionable risk intelligence to support decision-making.",
+  "project_experience": {
+    "periode": "2023-2026",
+    "projects": [
+      {
+        "nama": "BF AI InaFLEWS - Flood & Landslide Early Warning System (OPERATIONAL)",
+        "role": "Lead Researcher & System Developer",
+        "portofolio_documentation": "https://bimocv.my.canva.site/inaflews-framework",
+        "details": [
+          "Developed an Al-driven impact-based forecasting system for flood and landslide risk prediction (3-day to monthly climate outlook)",
+          "Integrated hazard, exposure, and vulnerability using big geospatial data",
+          "Adopted by BMKG as an operational reference"
+        ]
+      },
+      {
+        "nama": "IBF SNORDIV MARISO - Marine Tourism Safety Outlook (OPERATIONAL)",
+        "role": "Lead Researcher & System Developer",
+        "details": [
+          "Developed a national-scale forecasting system for snorkeling and diving safety and comfort risk index",
+          "Generated 14-day forecasts based on ocean-atmosphere interactions"
+        ]
+      },
+      {
+        "nama": "IBF HELIOS - Heat Extreme Level Indicator Forecast System",
+        "details": [
+          "Developed a multi-parameter atmospheric risk model for extreme heat impacts",
+          "Produced indicators for heat stroke (feels-like temperature), heat stress (WBGT), dehydration risk, and drinking water needs"
+        ]
+      },
+      {
+        "nama": "IBF SWAF - Severe Wind Advisory Forecast",
+        "details": [
+          "Developed a risk-based forecasting system for strong wind impacts",
+          "Modeled impacts such as fallen trees and vessel capsizing using exposure and vulnerability analysis"
+        ]
+      },
+      {
+        "nama": "IBF COWS - Coastal Outlook Warning System",
+        "details": [
+          "Developed a coastal risk prediction system (tidal flooding, storm surge, coastal erosion)",
+          "Integrated ocean-atmosphere dynamics into an early warning framework"
+        ]
+      },
+      {
+        "nama": "IBF TCSI - Tropical Cyclone Suitability Index",
+        "details": [
+          "Developed a predictive model for tropical cyclone potential up to 6 months in advance",
+          "Applied advanced seasonal forecasting approaches across the ASEAN region"
+        ]
+      },
+      {
+        "nama": "IBF AI SIPPUNG - Tornado Impact Potential System",
+        "details": [
+          "Developed a forecasting system for tornadoes, waterspouts, and severe local vortices up to 7 days ahead"
+        ]
+      },
+      {
+        "nama": "IBF SEMERU - Mountain Risk Early Warning System",
+        "details": [
+          "Developed a predictive system for mountaineering risks, including hypothermia, with forecasts up to 14 days ahead"
+        ]
+      }
+    ]
+  },
+  "technical_skills": {
+    "geospatial_remote_sensing": [
+      "Advanced spatial analysis using ArcGIS and QGIS for multi-hazard risk modeling with diverse geospatial datasets",
+      "Cloud-based big geospatial data processing using Google Earth Engine through Python programming",
+      "Multi Satellite image processing using ENVI for environmental parameter extraction",
+      "Raster and vector modeling with Python-based GIS (PythonGIS) and empirical geospatial methods"
+    ],
+    "programming_data_science": [
+      "Data processing and analysis using Python (NumPy, Pandas, Xarray, GeoPandas, Scikit-learn, etc.) for analytics and predictive system development",
+      "Statistical and spatial analysis using R programming",
+      "Scientific computing and numerical modeling using MATLAB",
+      "Implementation of Machine Learning (supervised and unsupervised) for geospatial modeling",
+      "Application of Computer Vision for remote sensing interpretation and spatial validation",
+      "Large-scale geospatial data processing using SQL queries (national-scale datasets)"
+    ],
+    "numerical_modeling": [
+      "Weather simulation using WRF for atmospheric prediction",
+      "Spatial statistical modeling (Ensemble Kalman Filter, EOF, Fourier, Wavelet, etc.)",
+      "Hydrological modeling using HEC-RAS and HEC-HMS for flood analysis",
+      "Coastal and ocean modeling using Delft3D and MIKE 21",
+      "Development of multi-hazard risk models based on Impact-Based Forecasting (IBF)"
+    ]
+  },
+  "achievements_scientific_contribution": {
+    "general": "Speaker at 50+ national and international conferences in geospatial science, climate, and disaster risk",
+    "selected_achievements": [
+      "1st Place & Best Presentation - Research Competition, Universitas Andalas (2023)",
+      "1st Best Oral Presenter - International Conference on Multidisciplinary Research (2021)",
+      "1st Best Paper - International Conference on Aerospace & Aviation, Institut Teknologi Bandung (2021)",
+      "3rd Place - National Research Competition, Soil Festival, IPB University (2021)",
+      "3rd Place & Best Presenter - National Research FATERNA, Universitas Andalas (2021)",
+      "Grand Finalist - Geospatial Challenge, Institut Teknologi Bandung (2021 & 2023)",
+      "Keynote Speaker - Disaster Risk Mitigation Event, Universitas Brawijaya (2022)"
+    ]
+  },
+  "education": {
+    "institusi": "School of Meteorology Climatology & Geophyscis (STMKG)",
+    "gelar": "Bachelor of Applied Science in Meteorology / Atmospheric Science",
+    "gpa": "GPA: 3.74/4.00",
+    "periode": "08/2019-09/2023"
+  }
+}
