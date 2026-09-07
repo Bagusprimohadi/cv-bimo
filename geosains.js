@@ -167,8 +167,6 @@ function setup3DTiltEffect() {
     });
 }
 
-
-// DATA SCIENCE CANVAS (KODE PYTHON SCROLLING HIJAU NEON)
 function initDataScienceCanvas() {
     const canvas = document.getElementById('data-canvas');
     if (!canvas) return;
