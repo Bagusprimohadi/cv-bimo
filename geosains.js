@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return res.json();
         })
         .then(data => {
-            // Helper pembersih teks aman
+            // Helper pembersih teks yang aman dari crash
             const cleanText = (str) => {
                 if (typeof str !== 'string') return str || '';
-                return str.split('[cite')[0].replace(/\\/g, '').trim();
+                return str.replace(/\]+\]/g, '').replace(/\\/g, '').trim();
             };
 
             // Header & About Me
@@ -65,7 +65,7 @@ function renderProjectCards(containerId, projects, cleanText) {
     if (!container) return;
 
     const projIcons = ["🌩️", "🌊", "☀️", "🌪️", "🏖️", "🌀"];
-    container.innerHTML = ""; // Bersihkan kontainer
+    container.innerHTML = ""; // Bersihkan kontainer dari pesan loading
 
     projects.forEach((proj, idx) => {
         const title = cleanText(proj.nama);
@@ -86,7 +86,6 @@ function renderProjectCards(containerId, projects, cleanText) {
             </a>` : '';
 
         const card = document.createElement('div');
-        // Menghapus kelas fade-in-up agar elemen tidak hilang karena opacity 0
         card.className = `glass-card light-sweep tilt-element group p-6 rounded-2xl flex flex-col justify-between cursor-pointer border border-cyan-500/30`;
         
         card.innerHTML = `
