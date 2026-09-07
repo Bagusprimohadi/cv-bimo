@@ -1,0 +1,126 @@
+/* --- GLOBAL THEME --- */
+:root {
+  --cyan-neon: #2dd4bf;
+  --blue-neon: #38bdf8;
+  --bg-dark: #020617; /* Deep Navy Black */
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-dark);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* --- ANIMATED RADAR SWEEP BACKGROUND --- */
+.radar-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08), transparent 60%),
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+.radar-bg::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%; width: 200vw; height: 200vh;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(45, 212, 191, 0.1) 0deg, transparent 60deg, transparent 360deg);
+  animation: radarSweep 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- GLASSMORPHISM & NEON EFFECTS --- */
+.glass-header {
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-panel {
+  background: rgba(14, 165, 233, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  background: rgba(14, 165, 233, 0.08);
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25), inset 0 0 15px rgba(45, 212, 191, 0.1);
+  transform: translateY(-6px);
+}
+
+/* Teks Bercahaya */
+.text-glow {
+  color: var(--cyan-neon);
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+/* Navigasi Aktif */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute; width: 0; height: 2px;
+  bottom: 0; left: 0;
+  background-color: var(--cyan-neon);
+  box-shadow: 0 0 10px var(--cyan-neon);
+  transition: width 0.3s ease-in-out;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Custom List untuk Project & Skills */
+.neon-list {
+  list-style: none;
+  padding-left: 0;
+}
+.neon-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.neon-list li::before {
+  content: '⚡';
+  position: absolute;
+  left: 0; top: 0;
+  font-size: 0.9rem;
+}
+
+/* Scroll Animation Classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
