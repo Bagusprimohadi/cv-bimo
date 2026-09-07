@@ -1,0 +1,74 @@
+{
+  "profile": {
+    "name": "Bagus Primohadi Syahputra",
+    "tagline_primary": "Earth & Geospatial Data Scientist | Science Educator",
+    "tagline_secondary": "Bridging Advanced AI Early Warning Systems with High-Impact Science Education",
+    "description": "Lead Researcher & System Developer (AI/IBF) sekaligus Instructional Designer dan Specialist Tutor OSN. Mengubah kompleksitas data bumi menjadi informasi risiko yang aplikatif, dan merancang kurikulum sains tingkat lanjut untuk mencetak talenta masa depan.",
+    "location": "Makassar, Indonesia",
+    "email": "bagus.primohadi14@gmail.com"
+  },
+  "validation_links": {
+    "github": {
+      "title": "GitHub",
+      "url": "https://www.github.com/bagusprimohadi",
+      "icon": "💻"
+    },
+    "scholar": {
+      "title": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=jmZfRBoAAAAJ&hl=id",
+      "icon": "🎓"
+    },
+    "researchgate": {
+      "title": "ResearchGate",
+      "url": "https://www.researchgate.net/profile/Bagus-Syahputra-2",
+      "icon": "🔬"
+    },
+    "youtube": {
+      "title": "YouTube Pokiedu",
+      "url": "https://www.youtube.com/pokiedu",
+      "icon": "🎥"
+    },
+    "instagram": {
+      "title": "Instagram",
+      "url": "https://www.instagram.com/bagusprimohadi",
+      "icon": "📸"
+    }
+  },
+  "live_platforms": [
+    {
+      "name": "IBF WebGIS App",
+      "category": "Geospatial & AI",
+      "url": "https://www.ibf-bbmkg4.com",
+      "description": "Sistem WebGIS Operasional Peringatan Dini Cuaca & Iklim.",
+      "icon": "🌍"
+    },
+    {
+      "name": "KelasBisa Platform",
+      "category": "EdTech",
+      "url": "https://kelasbisa.com",
+      "description": "Web edukasi, penjualan modul, dan ekosistem pelatihan sains.",
+      "icon": "🚀"
+    },
+    {
+      "name": "CBT Examination System",
+      "category": "EdTech",
+      "url": "https://cbt.briska.co.id",
+      "description": "Sistem Ujian CBT berbasis HOTS untuk OSN & SKD.",
+      "icon": "📝"
+    },
+    {
+      "name": "LMS KelasBisa & Gnomio",
+      "category": "EdTech",
+      "url": "https://lms.kelasbisa.com",
+      "url_alt": "https://pokiedu.gnomio.com",
+      "description": "Learning Management System interaktif untuk manajemen kelas.",
+      "icon": "📚"
+    }
+  ],
+  "quick_stats": [
+    { "value": "8+", "label": "AI Warning Systems", "icon": "🛰️" },
+    { "value": "50+", "label": "Conference Talks", "icon": "🎤" },
+    { "value": "50+", "label": "Mentored Schools", "icon": "🏫" },
+    { "value": "5+", "label": "Years in EdTech", "icon": "⏳" }
+  ]
+}
