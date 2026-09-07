@@ -1,0 +1,79 @@
+{
+  "header": {
+    "nama": "BAGUS PRIMOHADI SYAHPUTRA",
+    "title": "Science Educator | Instructional Designer | Curriculum Specialist",
+    "kontak": "+62822-6811-8842 | bagus.primohadi14@gmail.com",
+    "lokasi": "Makassar, Indonesia"
+  },
+  "ringkasan_profil": "Pendidik Profesional, Specialist Tutor Olimpiade Sains (OSN), Tutor SKD Kedinasan, Tutor Analisa Data Sains, Tutor Riset, dan Praktisi Kurikulum dengan pengalaman 5+ tahun dalam merancang program pelatihan intensif, menyusun instrumen evaluasi/asesmen tingkat lanjut, serta menyampaikan pengajaran interaktif. Memiliki rekam jejak teruji membina kontingen olimpiade tingkat provinsi, melatih guru nasional, dan menerbitkan modul/buku ajar/panduan akademik. Berkeahlian tinggi dalam Advanced Instructional Design, penyusunan soal berbasis HOTS, serta integrasi teknologi edukasi (EdTech).",
+  "keahlian_utama_pendidikan": {
+    "perancangan_kurikulum_asesmen": [
+      "HOTS Assessment Development: Penyusunan instrumentasi soal berbasis Higher-Order Thinking Skills menggunakan framework Bloom's Taxonomy (Revised) & Webb's Depth of Knowledge (DOK).",
+      "Advanced Training Curriculum Mapping: Penyusunan kurikulum, silabus, & rubrik penilaian menggunakan ADDIE Model & Backward Design (UbD).",
+      "Diagnostic & Summative Test Engineering: Penyusunan simulasi, Try Out, & evaluasi berjenjang terintegrasi platform digital (Quizizz, Kahoot!, Google Forms, CBT Platform)"
+    ],
+    "metodologi_pengajaran_pedagogi": [
+      "Competitive Science Mentorship: Pembinaan & pelatihan intensif kontingen OSN tingkat provinsi/nasional dengan pendekatan Inquiry-Based Learning & Problem-Based Learning (PBL).",
+      "Teacher Training & Capacity Building: Pelatihan up-skilling & fasilitasi metode pengajaran interaktif untuk guru/tenaga pendidik.",
+      "Differentiated & Interactive Learning: Penerapan metode pembelajaran adaptif luring & daring menggunakan papan interaktif (Miro, Jamboard) & Padlet.",
+      "Classroom & Student Engagement Management: Manajemen kelas komprehensif, pelacakan progres siswa, & pendampingan motivasi pembelajar."
+    ],
+    "pengembangan_media_teknologi_pembelajaran": [
+      "Educational Authoring & Publishing: Penulisan buku, modul ajar, & panduan kompetisi sains via LaTeX, Microsoft Word (Advanced Styles), & Canva.",
+      "Digital Learning Content Production: Produksi video pembelajaran interaktif & media audio-visual menggunakan Obs Studio, Camtasia, Filmora, & Adobe Premiere.",
+      "Educational Technology Integration: Pemanfaatan & pengelolaan Learning Management System (Moodle/Gnomio, Google Classroom, & Linktree).",
+      "Aplikatif Tools Pembelajaran: Alat Praktik Lapangan dan Platform Game Based-Learning"
+    ],
+    "komunikasi_akademik_facilitation": [
+      "Public Speaking & Scientific Presentation: Pemateri & speaker seminar/webinar pendidikan nasional & internasional menggunakan Microsoft Power Point & Google Slides."
+    ]
+  },
+  "pendidikan": {
+    "institusi": "Sekolah Tinggi Meteorologi Klimatologi dan Geofisika (STMKG)",
+    "gelar": "Sarjana Terapan Meteorologi / Sains Atmosfer | IPK: 3.74/4.00 | Lulus: 2023"
+  },
+  "pengalaman_kerja_portofolio_pedagogi": {
+    "tutor_pelatih_olimpiade_kebumian": [
+      "Pelatih Siswa Kontingen OSN Kebumian Dinas Pendidikan Provinsi Jawa Barat (2022-2024), Riau (2022), dan Aceh (2021).",
+      "Instruktur Pelatihan Guru Olimpiade Kebumian SMA Al Azhar Se-Indonesia (2022), Guru Se-Provinsi Sulawesi Tenggara (2024).",
+      "Pelatih Siswa Lembaga OSN Tingkat Kabupaten-Nasional ALC Indonesia (2020-2024), Pelatihan OSN.com (2020-2024), LOPI Indonesia (2020-2024), Science GO (2023-2024), SOC Olympiad (2021-2023), POKI Edu (2018-2024).",
+      "Pelatih Siswa Tim Kebumian Sekolah SMAN Plus Prov. Riau (2018-2019), MAN 2 Model Pekanbaru (2019-2025), MAN 1 Pekanbaru (2019-2020), SMAN 12 Jakarta (2020), SMAN Binsus Dumai (2021), SMAN 3 Semarang (2021), SMA Darul Ulum Jombang (2021), MAN 3 Jombang (2023-2025), SMAN 1 Tambang Riau (2021), SMAN 1 Singosari (2022), MAN 1 Pekalongan (2022), MAN IC Pekalongan (2023), SMA Gabungan Jakarta Timur (2023), SMA Unggul Del (2024), MAN IC Siak (2023), MAN IC Pasuruan (2022-2024), MAN 2 Malang (2023), SMA Pradita Dirgantara (2023), SMAN 8 Jakarta (2023-2024), SMAN MH Thamrin (2023-2024), SMA Labschool Kebayoran Jakarta (2023), SMAK BPK Penabur Jakarta (2023), SMA Mutiara Palu (2024), MAN IC Gowa (2026), SMA Kusuma Bangsa Palembang (2025-2026), SMAN 1 Cianjur (2024), SMAN 1 Purwakarta (2024), dan 20+ SMA lain"
+    ],
+    "tutor_olimpiade_astronomi_geografi": [
+      "Tutor Olimpiade Geografi di SMAN 37 Jakarta (2021), SMAN 2 Tambun Selatan (2023), SMAN 49 Jakarta (2023) dan SMAN 87 Jakarta (2023).",
+      "Tutor Olimpiade Astronomi di SMAN 5 Pekanbaru (2019), SMAN 1 Sei Suka (2022), SMAN 5 Depok (2024), SMAN 1 Cibungbulang (2023), dan SMAN 2 Sukabumi (2023), MAN 4 Jakarta (2023-2024), MAN 2 Jakarta (2023-2024) dan 15+ SMA lainnya"
+    ],
+    "tutor_bidang_lainnya": [
+      "Tutor UTBK Fisika & Kimia (SMP/SMA 2028-2024) dan Tutor OSN IPA SMP & IPS (2018-2019), Asisten Dosen STMKG (2023), Tutor Statistika Mahasiswa (2023), Tutor Pemrograman Python (2025)"
+    ],
+    "pengembangan_kurikulum_modul_ajar": [
+      "Penulis Buku Olimpiade Kebumian SMA (Penerbit Jasmedia).",
+      "Pembuat Konten Video Pembelajaran Pelatihan Kebumian di POSI (202-2021).",
+      "Pembuat Soal Try Out OSN SMP/SMA dan Soal UTBK, SKD Kedinasan, Simak UI SMA (2022-2026)",
+      "Tim Asesor Soal HOTS Madrasah se Kota Bogor (2024)",
+      "Tim Pengembang Kurikulum IPA Project Based Learning di SMA Lazuardi Bogor (2023-2024)"
+    ]
+  },
+  "prestasi": {
+    "tingkat_perguruan_tinggi_profesional": [
+      "Juara 1 & Best Presentation Lomba Karya Tulis Ilmiah Nasional Universitas Andalas (2023).",
+      "Grand Finalist Paper Competition Geospatial Challenge Geodesi ITB (2021, 2023).",
+      "Medali Emas Olimpiade Pengajar/Guru Bidang Geosains (LOSPI & UNRI, 2018).",
+      "Medali Perak Olimpiade Pengajar/Guru Bidang Geografi (OSRC, 2019).",
+      "Best Presenter LKTI Nasional Faterna Scientific Week Unand (2020) & Juara 3 (2021).",
+      "Juara 3 LKTI Nasional Soil Festival IPB (2021).",
+      "1st Best Oral Presenter di International Conference on Multidisciplinary Research (2021).",
+      "Pemateri & Pembicara Edukasi di 20+ Konferensi Internasional dan Seminar Nasional (ITB, UNHAS, UNJ, UPI, STIS, UNDIKSHA, UNMUL, dll.) (2021-2023)"
+    ],
+    "tingkat_sma": [
+      "Medali Perak OSN Tingkat Nasional Bidang Ilmu Kebumian - Kemendikbud (2017).",
+      "Medali Emas & Juara Umum Olimpiade Kebumian Se-Regional Sumatera (UNP, 2017).",
+      "Medali Perak (2017) & Perunggu (2016) Olimpiade Geosains Regional Sumbagteng (UNRI).",
+      "Medali Perunggu Olimpiade Geologi (2016), Astronomi (2017), & Sejarah (2017) UNRI.",
+      "Juara 1 Cerdas Cermat IPS Sosial Humaniora Kota Dumai (2017).",
+      "Juara 3 LCC Anti Korupsi Pemprov Riau & KΡΚ (2017).",
+      "Delegasi Pertukaran Pelajar Tingkat Nasional Siswa Mengenal Nusantara - KemenBUMN (2016).",
+      "Finalis Utama Olimpiade Geografi Tingkat Nasional (UI, 2016)."
+    ]
+  }
+}
