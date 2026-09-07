@@ -28,7 +28,7 @@ body {
   pointer-events: none;
 }
 
-/* GLASSMORPHISM & NEON GLOW */
+/* GLASSMORPHISM & KARTU */
 .glass-header {
   background: rgba(3, 7, 18, 0.85);
   backdrop-filter: blur(20px);
@@ -42,7 +42,7 @@ body {
   border: 1px solid rgba(16, 185, 129, 0.25);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .glass-card:hover {
@@ -54,68 +54,30 @@ body {
   text-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.2);
 }
 
-/* LIGHT SWEEP EFFECT */
-.light-sweep::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -150%;
-  width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4), transparent);
-  transform: skewX(-25deg);
-  animation: sweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-@keyframes sweep {
-  0% { left: -150%; }
-  50% { left: 150%; }
-  100% { left: 150%; }
-}
-
-/* POPUP MODAL HOVER STYLING */
-.popup-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-center: center;
-}
-
-.card-popup-active .popup-overlay {
-  opacity: 1;
-}
-
-.popup-modal-content {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.85);
-  width: 90%;
-  max-width: 650px;
-  max-height: 80vh;
-  background: rgba(6, 24, 18, 0.95);
-  border: 2px solid #34d399;
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 0 50px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.2);
-  z-index: 60;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow-y: auto;
-}
-
-/* Aktifkan Pop-Up Besar di Tengah Layar saat Hover */
-.group:hover .popup-modal-content {
+/* MODAL GLOBAL STYLING */
+#global-modal-overlay.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
+}
+
+#global-modal-overlay.active #global-modal-box {
+  transform: scale(1);
+}
+
+/* CUSTOM SCROLLBAR UNTUK MODAL */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.4);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.8);
 }
 
 /* NAV LINKS */
