@@ -16,84 +16,84 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="text-base md:text-lg leading-relaxed">${cleanText(data.ringkasan_profil)}</p>
             `;
 
-            // Setup Data Render dengan Pop-Up Modul Besar
-            renderPopUpCards('skills-grid', data.keahlian_utama_pendidikan, {
+            // Render Cards
+            renderInteractiveCards('skills-grid', data.keahlian_utama_pendidikan, {
                 "perancangan_kurikulum_asesmen": "📝",
                 "metodologi_pengajaran_pedagogi": "🧠",
                 "pengembangan_media_teknologi_pembelajaran": "💻",
                 "komunikasi_akademik_facilitation": "🎙️"
-            }, "h-56", cleanText);
+            }, "h-52", cleanText);
 
-            renderPopUpCards('experience-grid', data.pengalaman_kerja_portofolio_pedagogi, {
+            renderInteractiveCards('experience-grid', data.pengalaman_kerja_portofolio_pedagogi, {
                 "tutor_pelatih_olimpiade_kebumian": "🌋",
                 "tutor_olimpiade_astronomi_geografi": "🌌",
                 "tutor_bidang_lainnya": "🧪",
                 "pengembangan_kurikulum_modul_ajar": "📖"
-            }, "h-60", cleanText);
+            }, "h-56", cleanText);
 
-            renderPopUpCards('achievements-grid', data.prestasi, {
+            renderInteractiveCards('achievements-grid', data.prestasi, {
                 "tingkat_perguruan_tinggi_profesional": "🏆",
                 "tingkat_sma": "🏅"
-            }, "h-60", cleanText);
+            }, "h-56", cleanText);
 
             setup3DTiltEffect();
         })
         .catch(err => console.error("Data error:", err));
 });
 
-// MEMBUAT CARD DENGAN MODUL POP-UP BESAR SAAT HOVER
-function renderPopUpCards(containerId, dataset, iconMap, heightClass, cleanText) {
+// EVENT BINDING MODAL GLOBAL
+function renderInteractiveCards(containerId, dataset, iconMap, heightClass, cleanText) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = "";
+
+    const overlay = document.getElementById('global-modal-overlay');
+    const modalIcon = document.getElementById('modal-icon');
+    const modalTitle = document.getElementById('modal-title');
+    const modalList = document.getElementById('modal-list');
 
     for (const [key, items] of Object.entries(dataset)) {
         const title = key.replace(/_/g, ' ').toUpperCase();
         const icon = iconMap[key] || "✨";
         const itemsArray = Array.isArray(items) ? items : [];
-        
-        const listHtml = itemsArray.map(i => `
-            <li class="flex gap-3 items-start text-sm md:text-base text-slate-100 font-mono leading-relaxed">
-                <span class="text-emerald-400 font-bold text-lg">▹</span>
-                <span>${cleanText(i)}</span>
-            </li>
-        `).join('');
 
         const card = document.createElement('div');
-        card.className = `glass-card light-sweep tilt-element group p-6 ${heightClass} flex flex-col items-center justify-center text-center cursor-pointer rounded-2xl`;
+        card.className = `glass-card tilt-element group p-6 ${heightClass} flex flex-col items-center justify-center text-center cursor-pointer rounded-2xl`;
         
         card.innerHTML = `
-            <!-- PREVIEW CARD (Tampilan Normal) -->
             <div class="flex flex-col items-center w-full">
-                <div class="text-5xl mb-3 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">${icon}</div>
-                <h3 class="text-base md:text-lg font-bold text-emerald-400 font-mono tracking-wide">${title}</h3>
-                <div class="mt-4 px-3 py-1 border border-emerald-500/40 rounded-full text-[10px] text-emerald-300 font-mono animate-pulse bg-emerald-950/40">
+                <div class="text-4xl mb-3 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">${icon}</div>
+                <h3 class="text-sm md:text-base font-bold text-emerald-400 font-mono tracking-wide">${title}</h3>
+                <div class="mt-4 px-3 py-1 border border-emerald-500/40 rounded-full text-[10px] text-emerald-300 font-mono bg-emerald-950/40">
                     🔍 HOVER UNTUK MEMBUKA MODUL
                 </div>
             </div>
-
-            <!-- POP-UP MODUL BESAR (MUNCUL DI TENGAH LAYAR SAAT HOVER) -->
-            <div class="popup-modal-content text-left">
-                <div class="flex justify-between items-center pb-4 mb-4 border-b border-emerald-500/40">
-                    <div class="flex items-center gap-3">
-                        <span class="text-3xl">${icon}</span>
-                        <h4 class="text-xl font-extrabold text-emerald-300 font-mono">${title}</h4>
-                    </div>
-                    <span class="text-xs text-emerald-400 font-mono px-2 py-1 bg-emerald-950 rounded border border-emerald-500/30">MODULE DECRYPTED</span>
-                </div>
-                <ul class="space-y-4 my-2">
-                    ${listHtml}
-                </ul>
-                <div class="mt-6 pt-3 border-t border-emerald-500/20 text-right">
-                    <span class="text-[11px] text-slate-400 font-mono">Geser kursor keluar untuk menutup modul ✕</span>
-                </div>
-            </div>
         `;
+
+        // SAAT HOVER KARTU: TAMPILKAN MODAL DI TENGAH LAYAR
+        card.addEventListener('mouseenter', () => {
+            modalIcon.textContent = icon;
+            modalTitle.textContent = title;
+            modalList.innerHTML = itemsArray.map(i => `
+                <li class="flex gap-2.5 items-start text-xs md:text-sm text-slate-100 font-mono leading-relaxed">
+                    <span class="text-emerald-400 font-bold text-base">▹</span>
+                    <span>${cleanText(i)}</span>
+                </li>
+            `).join('');
+
+            overlay.classList.add('active');
+        });
+
+        // SAAT KURSOR KELUAR DARI KARTU: SEMBUNYIKAN MODAL
+        card.addEventListener('mouseleave', () => {
+            overlay.classList.remove('active');
+        });
+
         container.appendChild(card);
     }
 }
 
-// 3D TILT EFFECT
+// EFEK 3D TILT KARTU
 function setup3DTiltEffect() {
     document.querySelectorAll('.tilt-element').forEach(el => {
         el.addEventListener('mousemove', e => {
@@ -114,7 +114,7 @@ function setup3DTiltEffect() {
     });
 }
 
-// MATH CANVAS INTERAKTIF (DENGAN RUMUS MELIMPAH & TRIGONOMETRI)
+// MATH CANVAS INTERAKTIF
 function initMathFormulaCanvas() {
     const canvas = document.getElementById('math-canvas');
     if (!canvas) return;
