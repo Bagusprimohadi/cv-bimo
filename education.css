@@ -1,127 +1,102 @@
-/* --- GLOBAL THEME --- */
+/* GLOBAL THEME */
 :root {
-  --emerald-neon: #10b981;
-  --emerald-light: #34d399;
-  --bg-dark: #020617; /* Very dark slate */
+  --neon-green: #10b981;
+  --neon-glow: #34d399;
+  --bg-black: #030712;
 }
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background-color: var(--bg-dark);
-  color: #e2e8f0;
+  background-color: var(--bg-black);
   overflow-x: hidden;
-  margin: 0;
 }
 
-/* --- ANIMATED BACKGROUND (CSS BLOBS) --- */
-.blob-bg {
+/* CANVAS BACKGROUND */
+#math-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cyber-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: -1;
-  background: var(--bg-dark);
-  overflow: hidden;
-}
-.blob-bg::before, .blob-bg::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  animation: floatBlobs 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.15;
-}
-.blob-bg::before {
-  width: 50vw; height: 50vw;
-  background: radial-gradient(circle, #10b981, transparent 70%);
-  top: -10%; left: -10%;
-}
-.blob-bg::after {
-  width: 60vw; height: 60vw;
-  background: radial-gradient(circle, #059669, transparent 70%);
-  bottom: -20%; right: -10%;
-  animation-delay: -10s;
+  background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05), #000000 80%);
+  z-index: 1;
+  pointer-events: none;
 }
 
-@keyframes floatBlobs {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(10%, 20%) scale(1.1); }
-  100% { transform: translate(-10%, -10%) scale(0.9); }
-}
-
-/* --- GLASSMORPHISM & NEON EFFECTS --- */
+/* GLASSMORPHISM & NEON GLOW */
 .glass-header {
-  background: rgba(2, 6, 23, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.glass-panel {
-  background: rgba(16, 185, 129, 0.05); /* Subtle emerald tint */
+.glass-card {
+  background: rgba(16, 185, 129, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.glass-panel:hover {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(52, 211, 153, 0.5);
-  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2), inset 0 0 15px rgba(16, 185, 129, 0.1);
-  transform: translateY(-8px);
+.glass-card:hover {
+  border-color: var(--neon-glow);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.3), inset 0 0 10px rgba(16, 185, 129, 0.1);
+  z-index: 20;
 }
 
-/* Teks Bercahaya */
 .text-glow {
-  color: var(--emerald-light);
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6), 0 0 20px rgba(16, 185, 129, 0.4);
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.2);
 }
 
-/* Navigasi Aktif */
+/* LIGHT SWEEP EFFECT */
+.light-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4), transparent);
+  transform: skewX(-25deg);
+  animation: sweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  0% { left: -150%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* NAV LINKS */
 .nav-link {
   position: relative;
-  text-decoration: none;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 }
-.nav-link::after {
+.nav-link::before {
   content: '';
   position: absolute; width: 0; height: 2px;
   bottom: 0; left: 0;
-  background-color: var(--emerald-neon);
-  box-shadow: 0 0 10px var(--emerald-neon);
-  transition: width 0.3s ease-in-out;
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+  transition: width 0.3s ease;
 }
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::before, .nav-link.active::before {
   width: 100%;
 }
 
-/* Custom Bullet List untuk Skills & Experience */
-.neon-list {
-  list-style: none;
-  padding-left: 0;
-}
-.neon-list li {
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 12px;
-  color: #cbd5e1;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-.neon-list li::before {
-  content: '▹';
-  position: absolute;
-  left: 0; top: -2px;
-  color: var(--emerald-light);
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-shadow: 0 0 5px var(--emerald-light);
-}
-
-/* Scroll Animation Classes */
+/* SCROLL ANIMATION */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in-up.visible {
   opacity: 1;
